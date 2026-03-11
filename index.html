@@ -1085,16 +1085,15 @@
             </div>
             <div class="stack-card">
               <h3>Provera rezervacije</h3>
-              <p>Svaki zahtev dobija svoju šifru kako bi gost kasnije mogao da proveri status prijave.</p>
+              <p>Možeš proveriti status po telefonu ili po šifri, bez lažnog lokalnog prikaza statusa.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  
-  
-    <section class="section" id="rezervacije">
+
+  <section class="section" id="rezervacije">
     <div class="container">
       <span class="section-kicker reveal">Rezervacije</span>
       <h2 class="section-title reveal">Pošalji zahtev za rezervaciju i sačuvaj svoju šifru.</h2>
@@ -1170,7 +1169,7 @@
             </div>
 
             <p class="res-note">
-              Posle slanja sačuvaj šifru rezervacije. Ta šifra služi za kasniju proveru statusa.
+              Klub ima 2 stola. Ako je izabran „Prvi slobodan sto“, klub će dodeliti slobodan sto pri potvrdi. Posle slanja sačuvaj šifru rezervacije.
             </p>
 
             <div class="res-actions">
@@ -1212,8 +1211,8 @@
               <span>Odaberi datum, klikni na termin i forma se automatski popunjava.</span>
             </div>
             <div class="mini-item">
-              <strong>Statusi rezervacije</strong>
-              <span>Rezervacija može biti na čekanju, potvrđena, otkazana ili završena.</span>
+              <strong>2 stola</strong>
+              <span>Za isti termin mogu postojati najviše dve potvrđene rezervacije — po jedna za svaki sto.</span>
             </div>
             <div class="mini-item">
               <strong>Kontakt za brzi dogovor</strong>
@@ -1230,7 +1229,7 @@
       <span class="section-kicker reveal">Status rezervacije</span>
       <h2 class="section-title reveal">Proveri da li je tvoj termin potvrđen.</h2>
       <p class="section-desc reveal">
-        Unesi šifru rezervacije ili broj telefona koji je korišćen pri prijavi i proveri status svog zahteva.
+        Najsigurnije je da uneseš telefon koji je korišćen pri prijavi. Možeš uneti i šifru rezervacije ako je imaš.
       </p>
 
       <div class="grid-2" style="margin-top:18px;">
@@ -1249,11 +1248,11 @@
 
             <div class="res-actions">
               <button type="button" class="btn btn-primary" id="lookupBtn">Proveri status</button>
-              <button type="button" class="btn btn-outline" id="loadLatestBtn">Prikaži poslednju moju rezervaciju</button>
+              <button type="button" class="btn btn-outline" id="loadLatestBtn">Prikaži poslednji poslati zahtev sa ovog uređaja</button>
             </div>
 
             <div class="res-status info" id="lookupStatus">
-              Unesi šifru ili telefon, pa klikni na proveru.
+              Unesi telefon ili šifru, pa klikni na proveru.
             </div>
 
             <div class="result-box empty" id="lookupResult">
@@ -1277,8 +1276,8 @@
             </div>
 
             <div class="status-card">
-              <h4>Otkazano</h4>
-              <div class="status-pill pill-cancelled">❌ Otkazano</div>
+              <h4>Odbijeno / Otkazano</h4>
+              <div class="status-pill pill-cancelled">❌ Odbijeno</div>
               <p class="section-desc" style="margin-top:10px;">Termin nije prihvaćen ili je naknadno otkazan.</p>
             </div>
 
@@ -1291,16 +1290,16 @@
 
           <div class="mini-list">
             <div class="mini-item">
-              <strong>Sačuvaj šifru</strong>
-              <span>Nakon slanja rezervacije obavezno sačuvaj kod koji dobiješ na sajtu.</span>
+              <strong>Najsigurnija provera</strong>
+              <span>Telefon je glavni ključ za proveru, jer ga sistem skoro uvek ima u tabeli.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Bez lažnog statusa</strong>
+              <span>Ova verzija više ne prikazuje „lokalno sačuvan status“ kao da je zvaničan status iz sistema.</span>
             </div>
             <div class="mini-item">
               <strong>Za brzu potvrdu</strong>
-              <span>Ako je hitno, pošalji i poruku preko Vibera ili WhatsApp-a uz svoju šifru rezervacije.</span>
-            </div>
-            <div class="mini-item">
-              <strong>Jasna provera</strong>
-              <span>Status i osnovni detalji rezervacije prikazuju se odmah nakon pretrage.</span>
+              <span>Ako je hitno, pošalji i poruku preko Vibera ili WhatsApp-a uz svoje ime, telefon i termin.</span>
             </div>
           </div>
         </div>
@@ -1517,18 +1516,17 @@
     <a href="https://wa.me/381642637342" target="_blank" rel="noopener" title="WhatsApp">WA</a>
     <a href="#rezervacije" title="Rezervacije">📅</a>
   </div>
-  
-  
-  
-  
-    <script>
+
+  <script>
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyukXUq9oUwI8ZfjcGtPFrv4JnqCScdNHPBzbmQijwNuLOdBjz89-YQxrXagiEZaWw00g/exec";
 
     const PHONE_E164 = "381642637342";
-    const PHONE_LOCAL = "0642637342";
     const CLUB_EMAIL = "drlazarevicbg@gmail.com";
-    const STORAGE_KEY = "zen_reservations_v3";
-    const LAST_RES_KEY = "zen_last_reservation_code_v3";
+    const STORAGE_KEY = "zen_reservations_v4";
+    const LAST_RES_KEY = "zen_last_reservation_code_v4";
+
+    const TABLE_OPTIONS = ["Prvi sto", "Drugi sto"];
+    const TIME_SLOTS = ["17:00", "18:30", "20:00", "21:30", "23:00", "00:30"];
 
     const menuBtn = document.getElementById("menuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
@@ -1583,22 +1581,12 @@
     resDate.value = todayStr;
     slotDateMirror.value = todayStr;
 
-    const slotsData = [
-      { time: "17:00", busy: false },
-      { time: "18:30", busy: false },
-      { time: "20:00", busy: true  },
-      { time: "21:30", busy: false },
-      { time: "23:00", busy: true  },
-      { time: "00:30", busy: false }
-    ];
-
     function normalizePhone(phone){
       let value = String(phone || "").trim();
       value = value.replace(/[^\d+]/g, "");
 
       if(value.startsWith("+381")) return "0" + value.slice(4);
       if(value.startsWith("381")) return "0" + value.slice(3);
-
       return value;
     }
 
@@ -1614,9 +1602,18 @@
     function statusClassName(status){
       const s = String(status || "").toLowerCase();
       if(s.includes("potvr")) return "pill-confirmed";
-      if(s.includes("otkaz")) return "pill-cancelled";
+      if(s.includes("odbij") || s.includes("otkaz")) return "pill-cancelled";
       if(s.includes("zavr")) return "pill-completed";
       return "pill-pending";
+    }
+
+    function normalizeStatus(status){
+      const s = String(status || "").trim().toLowerCase();
+      if(s.includes("potvr")) return "Potvrđeno";
+      if(s.includes("odbij")) return "Odbijeno";
+      if(s.includes("otkaz")) return "Otkazano";
+      if(s.includes("zavr")) return "Završeno";
+      return "Na čekanju";
     }
 
     function generateReservationCode(dateValue){
@@ -1660,39 +1657,37 @@
       lookupStatus.textContent = message;
     }
 
-    function renderSlots(){
-      slotsWrap.innerHTML = "";
-
-      slotsData.forEach(slot => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = `slot ${slot.busy ? "busy" : "free"}`;
-        btn.textContent = slot.time;
-
-        btn.addEventListener("click", () => {
-          document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
-          btn.classList.add("active");
-          resTime.value = slot.time;
-          setResStatus(`Izabran termin: ${slot.time} za datum ${slotDateMirror.value}. Sada možeš poslati zahtev.`, "ok");
-        });
-
-        slotsWrap.appendChild(btn);
-      });
-    }
-
     function syncDates(from, to){
       to.value = from.value;
-
       if(resDate.value !== slotDateMirror.value){
         resTime.value = "";
         document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
       }
-
       setResStatus("Datum je promenjen. Izaberi termin.", "info");
     }
 
     resDate.addEventListener("change", () => syncDates(resDate, slotDateMirror));
     slotDateMirror.addEventListener("change", () => syncDates(slotDateMirror, resDate));
+
+    function renderSlots(){
+      slotsWrap.innerHTML = "";
+
+      TIME_SLOTS.forEach((time, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `slot ${index === 2 || index === 4 ? "busy" : "free"}`;
+        btn.textContent = time;
+
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
+          btn.classList.add("active");
+          resTime.value = time;
+          setResStatus(`Izabran termin: ${time} za datum ${slotDateMirror.value}. Sada možeš poslati zahtev.`, "ok");
+        });
+
+        slotsWrap.appendChild(btn);
+      });
+    }
 
     renderSlots();
 
@@ -1715,6 +1710,14 @@
 
       if(!data.time){
         return "Izaberi termin.";
+      }
+
+      if(!TIME_SLOTS.includes(data.time)){
+        return "Izaberi termin iz ponuđenih polja.";
+      }
+
+      if(!data.table){
+        return "Izaberi sto.";
       }
 
       return "";
@@ -1782,8 +1785,8 @@ Molim potvrdu termina.`;
         });
 
         const text = await response.text();
-
         let parsed = null;
+
         try{
           parsed = JSON.parse(text);
         }catch{
@@ -1791,39 +1794,12 @@ Molim potvrdu termina.`;
         }
 
         if(response.ok){
-          return {
-            ok: true,
-            data: parsed || { raw:text }
-          };
+          return { ok:true, data:parsed || { raw:text } };
         }
 
-        return {
-          ok: false,
-          reason: "http_error",
-          status: response.status,
-          raw: text
-        };
+        return { ok:false, reason:"http_error", status:response.status, raw:text };
       }catch(error){
-        try{
-          const response = await fetch(WEB_APP_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify(bodyData)
-          });
-
-          return {
-            ok: false,
-            reason: "opaque_response",
-            data: response
-          };
-        }catch(secondError){
-          return {
-            ok: false,
-            reason: "network_error",
-            error: secondError?.message || error?.message || "Greška pri slanju"
-          };
-        }
+        return { ok:false, reason:"network_error", error:error?.message || "Greška pri slanju" };
       }
     }
 
@@ -1835,13 +1811,13 @@ Molim potvrdu termina.`;
       try{
         const url = new URL(WEB_APP_URL);
         url.searchParams.set("action", "lookupReservation");
-        if(code) url.searchParams.set("code", code);
         if(phone) url.searchParams.set("phone", phone);
+        if(code) url.searchParams.set("code", code);
 
         const response = await fetch(url.toString(), { method: "GET", redirect: "follow" });
         const text = await response.text();
-
         let parsed = null;
+
         try{
           parsed = JSON.parse(text);
         }catch{
@@ -1858,6 +1834,23 @@ Molim potvrdu termina.`;
       }
     }
 
+    function normalizeRecord(data){
+      return {
+        code: data.code || "",
+        name: data.name || data.ime || "",
+        phone: normalizePhone(data.phone || data.telefon || ""),
+        date: data.date || data.datum || "",
+        time: data.time || data.vreme || "",
+        table: data.table || data.sto || data["Šta želite da rezervišete"] || data.what || "",
+        people: data.people || data.osobe || "",
+        type: data.type || data.vrsta || "",
+        duration: data.duration || data.trajanje || "",
+        note: data.note || data.napomena || "",
+        status: normalizeStatus(data.status || data.STATUS || ""),
+        createdAt: data.createdAt || data.timestamp || new Date().toISOString()
+      };
+    }
+
     function renderSubmitResult(record, backendOk){
       submitResult.className = "result-box";
       submitResult.innerHTML = `
@@ -1866,18 +1859,19 @@ Molim potvrdu termina.`;
         <div class="code-box">${escapeHtml(record.code)}</div>
         <div style="margin-top:10px;">
           Datum: <strong>${escapeHtml(record.date)}</strong> • Termin: <strong>${escapeHtml(record.time)}</strong><br>
+          Sto: <strong>${escapeHtml(record.table)}</strong><br>
           Status: <strong>${escapeHtml(record.status)}</strong><br>
           ${backendOk
             ? 'Zahtev je uspešno prosleđen sistemu kluba.'
-            : 'Zahtev je sačuvan na ovom uređaju, ali potvrda slanja ka sistemu kluba nije pouzdano potvrđena. Pošalji i preko WhatsApp-a, Vibera ili poziva.'}
+            : 'Zahtev nije pouzdano potvrđen od strane servera. Pošalji i preko WhatsApp-a, Vibera ili poziva.'}
         </div>
       `;
     }
 
-    function renderLookupResult(record){
+    function renderLookupResult(record, isLocalOnly = false){
       lookupResult.className = "result-box";
       lookupResult.innerHTML = `
-        <strong>Detalji rezervacije</strong><br><br>
+        <strong>${isLocalOnly ? "Poslednji poslati zahtev sa ovog uređaja" : "Detalji rezervacije"}</strong><br><br>
         Šifra: <strong>${escapeHtml(record.code || "-")}</strong><br>
         Ime: <strong>${escapeHtml(record.name || "-")}</strong><br>
         Telefon: <strong>${escapeHtml(record.phone || "-")}</strong><br>
@@ -1894,18 +1888,18 @@ Molim potvrdu termina.`;
       `;
     }
 
-    function findLocalReservation(code, phone){
-      const normalizedPhone = normalizePhone(phone || "");
+    function tryFindLocalByPhoneOrCode(code, phone){
       const all = getReservations();
+      const normalizedPhone = normalizePhone(phone);
 
       if(code){
-        const byCode = all.find(item => String(item.code).toUpperCase() === String(code).trim().toUpperCase());
-        if(byCode) return byCode;
+        const foundByCode = all.find(item => String(item.code || "").trim().toUpperCase() === String(code).trim().toUpperCase());
+        if(foundByCode) return foundByCode;
       }
 
       if(normalizedPhone){
-        const byPhone = all.find(item => normalizePhone(item.phone) === normalizedPhone);
-        if(byPhone) return byPhone;
+        const foundByPhone = all.find(item => normalizePhone(item.phone) === normalizedPhone);
+        if(foundByPhone) return foundByPhone;
       }
 
       return null;
@@ -1921,6 +1915,18 @@ Molim potvrdu termina.`;
       submitResult.className = "result-box empty";
       submitResult.textContent = "Sačekaj trenutak...";
 
+      const localConflict = getReservations().find(item => {
+        const sameDate = item.date === record.date;
+        const sameTime = item.time === record.time;
+        const sameTable = item.table === record.table;
+        const activeStatus = !["Odbijeno", "Otkazano"].includes(normalizeStatus(item.status));
+        return sameDate && sameTime && sameTable && activeStatus;
+      });
+
+      if(record.table !== "Prvi slobodan sto" && localConflict){
+        setResStatus("Na ovom uređaju već postoji zahtev za isti datum, termin i sto. Izaberi drugi sto ili drugi termin.", "warn");
+      }
+
       const backendResult = await postToBackend(record);
 
       saveLocalReservation(record);
@@ -1928,8 +1934,13 @@ Molim potvrdu termina.`;
       if(backendResult.ok){
         setResStatus("Zahtev je uspešno poslat. Sačuvaj šifru rezervacije.", "ok");
         renderSubmitResult(record, true);
+        reservationForm.reset();
+        resDate.value = todayStr;
+        slotDateMirror.value = todayStr;
+        resTime.value = "";
+        document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
       }else{
-        setResStatus("Zahtev je sačuvan, ali slanje sistemu kluba nije pouzdano potvrđeno. Pošalji i preko WhatsApp-a, Vibera ili poziva.", "warn");
+        setResStatus("Server nije pouzdano potvrdio prijem. Sačuvaj šifru i pošalji i preko WhatsApp-a, Vibera ili poziva.", "warn");
         renderSubmitResult(record, false);
       }
     });
@@ -1939,71 +1950,54 @@ Molim potvrdu termina.`;
       const phone = normalizePhone(lookupPhone.value.trim());
 
       if(!code && !phone){
-        setLookupStatus("Unesi šifru rezervacije ili telefon.", "err");
+        setLookupStatus("Unesi telefon ili šifru rezervacije.", "err");
         lookupResult.className = "result-box empty";
         lookupResult.textContent = "Nema podataka za proveru.";
         return;
       }
 
       setLookupStatus("Provera statusa je u toku...", "info");
+      lookupResult.className = "result-box empty";
+      lookupResult.textContent = "Sačekaj trenutak...";
 
       const backendResult = await fetchStatusFromBackend(code, phone);
 
       if(backendResult.ok && backendResult.data){
-        const data = backendResult.data.reservation || backendResult.data.data || backendResult.data;
-
-        if(data && (data.code || data.phone)){
-          renderLookupResult(data);
-          setLookupStatus(`Status pronađen: ${data.status || "Na čekanju"}`, "ok");
-
-          if(data.code){
-            saveLocalReservation({
-              code: data.code || "",
-              name: data.name || "",
-              phone: data.phone || "",
-              date: data.date || "",
-              time: data.time || "",
-              table: data.table || "",
-              people: data.people || "",
-              type: data.type || "",
-              duration: data.duration || "",
-              note: data.note || "",
-              status: data.status || "Na čekanju",
-              createdAt: data.createdAt || new Date().toISOString()
-            });
-          }
-
+        const raw = backendResult.data.reservation || backendResult.data.data || backendResult.data.result || backendResult.data;
+        if(raw){
+          const record = normalizeRecord(raw);
+          renderLookupResult(record, false);
+          setLookupStatus(`Status pronađen: ${record.status}`, "ok");
+          saveLocalReservation(record);
           return;
         }
       }
 
-      const localRecord = findLocalReservation(code, phone);
-
-      if(localRecord){
-        renderLookupResult(localRecord);
-        setLookupStatus(`Prikazan je lokalno sačuvan status: ${localRecord.status}`, "warn");
+      const localDraft = tryFindLocalByPhoneOrCode(code, phone);
+      if(localDraft){
+        renderLookupResult(localDraft, true);
+        setLookupStatus("Server nije vratio rezultat. Prikazan je samo poslednji poslati zahtev sa ovog uređaja, ne i zvaničan status iz sistema.", "warn");
         return;
       }
 
       lookupResult.className = "result-box empty";
       lookupResult.textContent = "Rezervacija nije pronađena.";
-      setLookupStatus("Rezervacija nije pronađena. Proveri šifru ili pošalji upit klubu.", "err");
+      setLookupStatus("Rezervacija nije pronađena. Proveri telefon ili kontaktiraj klub.", "err");
     });
 
     loadLatestBtn.addEventListener("click", () => {
       const latest = getLatestReservation();
-
       if(!latest){
-        setLookupStatus("Na ovom uređaju nema sačuvane poslednje rezervacije.", "err");
+        setLookupStatus("Na ovom uređaju nema sačuvanog poslednjeg zahteva.", "err");
         lookupResult.className = "result-box empty";
-        lookupResult.textContent = "Nema sačuvane rezervacije.";
+        lookupResult.textContent = "Nema sačuvanog zahteva.";
         return;
       }
 
       lookupCode.value = latest.code || "";
       lookupPhone.value = latest.phone || "";
-      renderLookupResult(latest);
-      setLookupStatus(`Prikazana je poslednja sačuvana rezervacija: ${latest.status}`, "ok");
+      renderLookupResult(latest, true);
+      setLookupStatus("Prikazan je poslednji poslati zahtev sa ovog uređaja. Ovo nije automatski zvaničan status iz Google tabele.", "info");
     });
 
     sendWhatsAppBtn.addEventListener("click", () => {
@@ -2039,7 +2033,7 @@ Molim potvrdu termina.`;
     });
 
     setResStatus("Izaberi datum i termin, pa pošalji zahtev.", "info");
-    setLookupStatus("Unesi šifru ili telefon, pa klikni na proveru.", "info");
+    setLookupStatus("Unesi telefon ili šifru, pa klikni na proveru.", "info");
   </script>
 </body>
 </html>
