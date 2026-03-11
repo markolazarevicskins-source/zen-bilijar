@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEN Bilijar Admin</title>
+
+<style>
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+input,button{
+padding:10px;
+margin:5px;
+border-radius:6px;
+border:none;
+}
+
+button{
+background:#22c55e;
+color:white;
+font-weight:bold;
+}
+
+.card{
+background:#1e293b;
+padding:15px;
+border-radius:10px;
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🎱 ZEN Bilijar Admin Panel</h2>
+
+<input id="telefon" placeholder="Telefon">
+<input id="sifra" placeholder="Šifra rezervacije">
+
+<button onclick="pretrazi()">Pretraži</button>
+
+<div id="rezultat" class="card"></div>
+
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbyukXUq9oUwI8ZfjcGtPFrv4JnqCScdNHPBzbmQijwNuLOdBjz89-YQxrXagiEZaWw00g/exec";
+
+async function pretrazi(){
+
+let telefon=document.getElementById("telefon").value;
+let sifra=document.getElementById("sifra").value;
+
+let url=API;
+
+if(telefon){
+url+="?telefon="+telefon;
+}
+
+if(sifra){
+url+="?sifra="+sifra;
+}
+
+let res=await fetch(url);
+let data=await res.json();
+
+if(!data.ok){
+document.getElementById("rezultat").innerHTML="Nema rezultata";
+return;
+}
+
+document.getElementById("rezultat").innerHTML=`
+<b>Ime:</b> ${data.ime}<br>
+<b>Telefon:</b> ${data.telefon}<br>
+<b>Datum:</b> ${data.datum}<br>
+<b>Termin:</b> ${data.termin}<br>
+<b>Sto:</b> ${data.sto}<br>
+<b>Status:</b> ${data.status}
+`;
+
+}
+
+</script>
+
+</body>
+</html>
