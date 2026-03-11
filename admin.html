@@ -1,26 +1,26 @@
-<!-- САЧУВАЈ КАО: admin.html -->
 <!DOCTYPE html>
 <html lang="sr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>ZEN Admin | Резервације</title>
+  <title>ZEN ADMIN PANEL</title>
   <meta name="theme-color" content="#07110b" />
   <style>
     :root{
-      --bg:#07110b;
-      --panel:#0d1b14;
-      --panel-2:#11241a;
-      --card:#13291d;
-      --line:rgba(255,255,255,.10);
-      --text:#f3f7f4;
-      --muted:#b9c7be;
-      --green:#1fa463;
-      --red:#c44141;
-      --yellow:#d4a72c;
-      --blue:#2b7fff;
-      --shadow:0 10px 30px rgba(0,0,0,.28);
-      --radius:18px;
+      --bg:#06110d;
+      --bg2:#0b1d16;
+      --card:rgba(10,34,24,.82);
+      --line:rgba(155,255,190,.16);
+      --text:#eef8f0;
+      --muted:#b6cbbd;
+      --accent:#8cffb0;
+      --accent2:#45d47c;
+      --warn:#ffd166;
+      --ok:#5ce38d;
+      --bad:#ff7b7b;
+      --pending:#ffcf66;
+      --shadow:0 10px 40px rgba(0,0,0,.38);
+      --radius:22px;
     }
 
     *{box-sizing:border-box}
@@ -28,146 +28,153 @@
     body{
       font-family:Arial,Helvetica,sans-serif;
       background:
-        radial-gradient(circle at top right, rgba(43,127,255,.10), transparent 22%),
-        radial-gradient(circle at top left, rgba(31,164,99,.10), transparent 22%),
-        linear-gradient(180deg, #07110b 0%, #0a1610 100%);
+        radial-gradient(circle at top right, rgba(51,140,88,.18), transparent 26%),
+        radial-gradient(circle at top left, rgba(41,111,69,.12), transparent 28%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
       color:var(--text);
       min-height:100vh;
     }
 
     .wrap{
-      width:min(1100px, 94%);
-      margin:0 auto;
-      padding:18px 0 40px;
+      width:min(1200px, calc(100% - 24px));
+      margin:18px auto 32px;
     }
 
-    .top{
+    .topbar{
       display:flex;
-      flex-wrap:wrap;
       gap:12px;
-      align-items:center;
+      align-items:stretch;
       justify-content:space-between;
-      margin-bottom:16px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
     }
 
-    .brand{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    .hero{
+      flex:1 1 520px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       border:1px solid var(--line);
-      border-radius:22px;
-      padding:14px 16px;
+      border-radius:28px;
+      padding:18px 20px;
       box-shadow:var(--shadow);
-      min-width:280px;
+      backdrop-filter:blur(10px);
     }
 
-    .brand h1{
+    .hero h1{
       margin:0 0 6px;
-      font-size:22px;
-      line-height:1.15;
+      font-size:clamp(28px, 4vw, 44px);
+      line-height:1;
       letter-spacing:.4px;
     }
 
-    .brand p{
+    .hero p{
       margin:0;
       color:var(--muted);
-      font-size:14px;
+      font-size:16px;
     }
 
     .actions{
       display:flex;
       gap:10px;
+      align-items:center;
       flex-wrap:wrap;
     }
 
-    button, .btn{
+    .btn{
+      appearance:none;
       border:none;
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:700;
-      color:#fff;
-      background:var(--blue);
       cursor:pointer;
+      color:#fff;
+      background:linear-gradient(180deg,#294a36,#1d3427);
+      border:1px solid var(--line);
+      min-height:54px;
+      padding:0 18px;
+      border-radius:18px;
+      font-weight:700;
+      font-size:16px;
       box-shadow:var(--shadow);
       text-decoration:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:46px;
+      transition:transform .15s ease, filter .15s ease;
     }
 
-    button.secondary, .btn.secondary{
-      background:#24392c;
-      border:1px solid var(--line);
-      color:#fff;
+    .btn:hover{filter:brightness(1.07)}
+    .btn:active{transform:scale(.98)}
+    .btn.secondary{
+      background:linear-gradient(180deg,#173126,#11271e);
     }
 
-    button.green{background:var(--green)}
-    button.red{background:var(--red)}
-    button.yellow{background:var(--yellow); color:#151515}
+    .btn.warn{
+      background:linear-gradient(180deg,#5a4520,#3b2d12);
+    }
 
     .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
       border:1px solid var(--line);
-      border-radius:var(--radius);
+      border-radius:28px;
+      padding:18px;
       box-shadow:var(--shadow);
-      padding:14px;
-      margin-bottom:14px;
-      backdrop-filter: blur(6px);
+      backdrop-filter:blur(10px);
     }
 
-    .filters{
+    .controls{
       display:grid;
-      grid-template-columns:1.4fr 1fr 1fr 1fr;
-      gap:10px;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
+      gap:12px;
+      margin-bottom:14px;
     }
 
-    input, select{
+    .field{
       width:100%;
-      min-height:46px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background:var(--panel-2);
+      min-height:56px;
+      border-radius:18px;
+      border:1px solid rgba(141,255,181,.16);
+      background:rgba(4,24,16,.72);
       color:#fff;
-      padding:0 14px;
+      padding:0 16px;
       outline:none;
-      font-size:15px;
+      font-size:16px;
     }
 
-    input::placeholder{color:#b8c2bb}
+    .field::placeholder{color:#9fb5a7}
 
     .stats{
       display:grid;
       grid-template-columns:repeat(4, 1fr);
-      gap:10px;
-      margin-top:12px;
+      gap:12px;
+      margin-bottom:14px;
     }
 
     .stat{
-      background:var(--panel-2);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:12px;
+      background:rgba(4,24,16,.72);
+      border:1px solid rgba(141,255,181,.14);
+      border-radius:20px;
+      padding:16px;
+      min-height:110px;
     }
 
-    .stat .k{
-      font-size:13px;
+    .stat .label{
       color:var(--muted);
-      margin-bottom:6px;
+      font-size:15px;
+      margin-bottom:8px;
     }
 
-    .stat .v{
-      font-size:24px;
+    .stat .value{
+      font-size:42px;
       font-weight:800;
+      line-height:1;
     }
 
-    .info-line{
+    .meta{
       display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      align-items:center;
+      gap:12px;
       justify-content:space-between;
-      margin-top:10px;
+      align-items:center;
       color:var(--muted);
-      font-size:14px;
+      font-size:15px;
+      flex-wrap:wrap;
+      margin:4px 2px 14px;
     }
 
     .list{
@@ -176,490 +183,509 @@
     }
 
     .card{
-      background:linear-gradient(180deg, #112218, #0f1c15);
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:14px;
-      box-shadow:var(--shadow);
+      background:rgba(4,24,16,.75);
+      border:1px solid rgba(141,255,181,.12);
+      border-radius:22px;
+      padding:16px;
     }
 
     .card-top{
       display:flex;
       gap:10px;
-      justify-content:space-between;
       align-items:flex-start;
+      justify-content:space-between;
       margin-bottom:12px;
+      flex-wrap:wrap;
     }
 
-    .who{
-      min-width:0;
-    }
-
-    .who h3{
+    .name{
+      font-size:22px;
+      font-weight:800;
+      line-height:1.15;
       margin:0 0 6px;
-      font-size:18px;
-      word-break:break-word;
     }
 
-    .who .phone{
+    .sub{
       color:var(--muted);
       font-size:14px;
-      word-break:break-word;
+      line-height:1.45;
     }
 
     .badge{
-      padding:8px 12px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 14px;
       border-radius:999px;
-      font-size:13px;
+      font-size:14px;
       font-weight:800;
+      border:1px solid transparent;
       white-space:nowrap;
-      border:1px solid rgba(255,255,255,.08);
     }
 
-    .badge.pending{background:rgba(212,167,44,.16); color:#ffd86b}
-    .badge.approved{background:rgba(31,164,99,.16); color:#7dffb9}
-    .badge.rejected{background:rgba(196,65,65,.16); color:#ff9b9b}
+    .badge.pending{
+      color:#251a00;
+      background:var(--pending);
+    }
+
+    .badge.ok{
+      color:#052211;
+      background:var(--ok);
+    }
+
+    .badge.bad{
+      color:#fff;
+      background:var(--bad);
+    }
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(4, 1fr);
+      grid-template-columns:repeat(2,1fr);
       gap:10px;
-      margin-bottom:12px;
     }
 
-    .box{
-      background:var(--panel-2);
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:10px 12px;
-      min-height:68px;
+    .item{
+      background:rgba(255,255,255,.025);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:16px;
+      padding:12px;
     }
 
-    .box .label{
+    .item .k{
       color:var(--muted);
-      font-size:12px;
-      margin-bottom:6px;
+      font-size:13px;
+      margin-bottom:4px;
     }
 
-    .box .value{
-      font-size:15px;
+    .item .v{
+      font-size:16px;
       font-weight:700;
       word-break:break-word;
     }
 
     .note{
-      background:#0d1913;
-      border:1px dashed var(--line);
-      border-radius:14px;
-      padding:10px 12px;
-      color:#dce7df;
-      font-size:14px;
-      margin-bottom:12px;
-      white-space:pre-wrap;
-      word-break:break-word;
-    }
-
-    .row-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .row-actions button{
-      flex:1 1 140px;
+      margin-top:10px;
+      background:rgba(255,255,255,.02);
+      border:1px dashed rgba(255,255,255,.1);
+      border-radius:16px;
+      padding:12px;
+      color:#dce9df;
+      line-height:1.5;
     }
 
     .empty{
       text-align:center;
-      color:var(--muted);
-      padding:28px 10px;
-      border:1px dashed var(--line);
-      border-radius:18px;
-      background:rgba(255,255,255,.03);
-    }
-
-    .loading{
-      text-align:center;
-      padding:20px;
-      color:#fff;
+      color:#d7e4d8;
+      background:rgba(255,255,255,.02);
+      border:1px dashed rgba(255,255,255,.12);
+      border-radius:22px;
+      padding:34px 18px;
+      font-size:20px;
     }
 
     .footer-note{
       margin-top:14px;
       color:var(--muted);
-      font-size:13px;
       text-align:center;
+      font-size:14px;
+      line-height:1.5;
     }
 
-    @media (max-width: 900px){
-      .filters{grid-template-columns:1fr 1fr}
-      .stats{grid-template-columns:1fr 1fr}
-      .grid{grid-template-columns:1fr 1fr}
+    .tiny{
+      font-size:12px;
+      color:#99b09f;
     }
 
-    @media (max-width: 560px){
-      .wrap{width:min(96%, 96%)}
-      .brand h1{font-size:20px}
-      .filters{grid-template-columns:1fr}
+    @media (max-width: 980px){
+      .controls{grid-template-columns:1fr 1fr}
       .stats{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width: 640px){
+      .wrap{width:min(100% - 14px, 1200px); margin:10px auto 24px}
+      .hero{padding:16px}
+      .hero h1{font-size:24px}
+      .hero p{font-size:14px}
+      .panel{padding:14px}
+      .controls{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .stat{min-height:96px}
+      .stat .value{font-size:34px}
       .grid{grid-template-columns:1fr}
-      .card-top{flex-direction:column; align-items:flex-start}
-      .row-actions button{flex:1 1 100%}
+      .name{font-size:20px}
+      .btn{min-height:50px; padding:0 14px; font-size:15px}
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="top">
-      <div class="brand">
+    <div class="topbar">
+      <div class="hero">
         <h1>ZEN ADMIN PANEL</h1>
-        <p>Преглед и одобравање резервација са телефона или рачунара</p>
+        <p>Преглед резервација са телефона или рачунара — чита директно из Google табеле.</p>
       </div>
 
       <div class="actions">
-        <button class="secondary" id="btnRefresh">Освежи</button>
-        <a class="btn secondary" href="./index.html">Назад на сајт</a>
+        <button class="btn secondary" id="btnRefresh">Освежи</button>
+        <a class="btn" href="index.html">Назад на сајт</a>
+        <a class="btn warn" id="btnSheet" href="#" target="_blank" rel="noopener">Отвори табелу</a>
       </div>
     </div>
 
     <div class="panel">
-      <div class="filters">
-        <input type="text" id="searchInput" placeholder="Претрага: име, телефон, датум, време..." />
-        <select id="statusFilter">
-          <option value="">Сви статуси</option>
-          <option value="NA ČEKANJU">На чекању</option>
-          <option value="ODOBRENO">Одобрено</option>
-          <option value="ODBIJENO">Одбијено</option>
+      <div class="controls">
+        <input id="searchInput" class="field" type="text" placeholder="Претрага: име, телефон, датум, време..." />
+        <select id="statusFilter" class="field">
+          <option value="all">Сви статуси</option>
+          <option value="На чекању">На чекању</option>
+          <option value="Одобрено">Одобрено</option>
+          <option value="Одбијено">Одбијено</option>
+          <option value="Без статуса">Без статуса</option>
         </select>
-        <input type="date" id="dateFilter" />
-        <select id="sortFilter">
+        <select id="contactFilter" class="field">
+          <option value="all">Сви начини контакта</option>
+          <option value="Телефон">Телефон</option>
+          <option value="Позив">Позив</option>
+          <option value="Viber">Viber</option>
+          <option value="Вибер">Вибер</option>
+          <option value="SMS">SMS</option>
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Емаил">Емаил</option>
+          <option value="Имејл">Имејл</option>
+          <option value="Email">Email</option>
+        </select>
+        <select id="sortFilter" class="field">
           <option value="newest">Најновије прво</option>
           <option value="oldest">Најстарије прво</option>
+          <option value="nameAsc">Име А-Ш</option>
+          <option value="nameDesc">Име Ш-А</option>
         </select>
       </div>
 
       <div class="stats">
         <div class="stat">
-          <div class="k">Укупно</div>
-          <div class="v" id="statTotal">0</div>
+          <div class="label">Укупно</div>
+          <div class="value" id="statTotal">0</div>
         </div>
         <div class="stat">
-          <div class="k">На чекању</div>
-          <div class="v" id="statPending">0</div>
+          <div class="label">На чекању</div>
+          <div class="value" id="statPending">0</div>
         </div>
         <div class="stat">
-          <div class="k">Одобрено</div>
-          <div class="v" id="statApproved">0</div>
+          <div class="label">Одобрено</div>
+          <div class="value" id="statApproved">0</div>
         </div>
         <div class="stat">
-          <div class="k">Одбијено</div>
-          <div class="v" id="statRejected">0</div>
+          <div class="label">Одбијено</div>
+          <div class="value" id="statRejected">0</div>
         </div>
       </div>
 
-      <div class="info-line">
-        <div id="statusText">Спремно.</div>
-        <div id="lastUpdate">Последње освежавање: —</div>
+      <div class="meta">
+        <div id="metaLoaded">Учитавање...</div>
+        <div id="metaTime">Последње освежавање: —</div>
       </div>
-    </div>
 
-    <div class="panel">
-      <div id="list" class="list">
-        <div class="loading">Учитавање резервација...</div>
+      <div id="reservationList" class="list"></div>
+
+      <div class="footer-note">
+        Ова верзија је <b>стабилна read-only верзија</b>: чита из Google табеле без Apps Script мучења.<br />
+        За ручну промену статуса отвори табелу и мењај колону <b>STATUS</b>.<br />
+        <span class="tiny">Касније можемо направити и пуну write верзију са дугмадима „Одобри / Одбиј“.</span>
       </div>
-    </div>
-
-    <div class="footer-note">
-      Ако се листа не учита, онда постојећи Google Apps Script мора да добије и део за читање и ажурирање статуса.
     </div>
   </div>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbyukXUq9oUwI8ZfjcGtPFrv4JnqCScdNHPBzbmQijwNuLOdBjz89-YQxrXagiEZaWw00g/exec";
+    /**********************************************************
+      ZEN ADMIN — GOOGLE SHEET READ-ONLY
+      Марков фајл за замену
+    **********************************************************/
+
+    const SHEET_ID = '1VKJAnPpLCwmUjTLQqgC_3Qgvit3AgDuap2aoGZdq0TI';
+    const SHEET_GID = '0';
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + SHEET_GID;
 
     const state = {
-      rows: [],
+      raw: [],
       filtered: []
     };
 
     const els = {
-      list: document.getElementById("list"),
-      searchInput: document.getElementById("searchInput"),
-      statusFilter: document.getElementById("statusFilter"),
-      dateFilter: document.getElementById("dateFilter"),
-      sortFilter: document.getElementById("sortFilter"),
-      btnRefresh: document.getElementById("btnRefresh"),
-      statusText: document.getElementById("statusText"),
-      lastUpdate: document.getElementById("lastUpdate"),
-      statTotal: document.getElementById("statTotal"),
-      statPending: document.getElementById("statPending"),
-      statApproved: document.getElementById("statApproved"),
-      statRejected: document.getElementById("statRejected")
+      list: document.getElementById('reservationList'),
+      statTotal: document.getElementById('statTotal'),
+      statPending: document.getElementById('statPending'),
+      statApproved: document.getElementById('statApproved'),
+      statRejected: document.getElementById('statRejected'),
+      metaLoaded: document.getElementById('metaLoaded'),
+      metaTime: document.getElementById('metaTime'),
+      searchInput: document.getElementById('searchInput'),
+      statusFilter: document.getElementById('statusFilter'),
+      contactFilter: document.getElementById('contactFilter'),
+      sortFilter: document.getElementById('sortFilter'),
+      btnRefresh: document.getElementById('btnRefresh'),
+      btnSheet: document.getElementById('btnSheet')
     };
 
-    function setStatus(text){
-      els.statusText.textContent = text;
+    els.btnSheet.href = SHEET_URL;
+
+    function normText(v) {
+      return String(v || '')
+        .replace(/\s+/g, ' ')
+        .trim();
     }
 
-    function setLastUpdate(){
-      const now = new Date();
-      els.lastUpdate.textContent = "Последње освежавање: " + now.toLocaleString("sr-RS");
+    function normLower(v) {
+      return normText(v)
+        .toLowerCase()
+        .replace(/č/g, 'c')
+        .replace(/ć/g, 'c')
+        .replace(/ž/g, 'z')
+        .replace(/š/g, 's')
+        .replace(/đ/g, 'dj');
     }
 
-    function esc(v){
-      return String(v ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#39;");
+    function escapeHtml(str) {
+      return String(str || '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
     }
 
-    function normStatus(v){
-      const s = String(v || "").trim().toUpperCase();
-      if (s === "ODOBRENO") return "ODOBRENO";
-      if (s === "ODBIJENO") return "ODBIJENO";
-      if (s === "NA CEKANJU" || s === "NA ČEKANJU" || s === "CEKANJE" || s === "ČEKANJE" || s === "PENDING") return "NA ČEKANJU";
-      return s || "NA ČEKANJU";
+    function formatNow() {
+      return new Date().toLocaleString('sr-RS');
     }
 
-    function badgeClass(status){
-      if (status === "ODOBRENO") return "approved";
-      if (status === "ODBIJENO") return "rejected";
-      return "pending";
+    function getCellValue(cell) {
+      if (!cell) return '';
+      if (typeof cell.v !== 'undefined' && cell.v !== null) return String(cell.v);
+      if (typeof cell.f !== 'undefined' && cell.f !== null) return String(cell.f);
+      return '';
     }
 
-    function pick(obj, keys){
-      for (const key of keys){
-        if (obj && obj[key] != null && obj[key] !== "") return obj[key];
-      }
-      return "";
+    function normalizeHeaderKey(header) {
+      const h = normLower(header);
+
+      if (h.includes('vremenska oznaka') || h === 'timestamp' || h.includes('datum unosa')) return 'timestamp';
+      if (h.includes('imejl') || h.includes('email') || h.includes('e-mail')) return 'email';
+      if (h.includes('ime i prezime') || h === 'ime' || h.includes('puno ime')) return 'name';
+      if (h.includes('telefon') || h.includes('broj telefona') || h === 'broj') return 'phone';
+      if (h === 'datum' || h.includes('datum rezervacije')) return 'date';
+      if (h === 'vreme' || h.includes('termin') || h.includes('satnica')) return 'time';
+      if (h.includes('napomena') || h.includes('poruka') || h.includes('komentar')) return 'note';
+      if (h.includes('kako da vas kontaktiramo') || h.includes('nacin kontakta') || h.includes('kontaktiramo')) return 'contact';
+      if (h.includes('status')) return 'status';
+
+      return header;
     }
 
-    function normalizeRow(row, index){
-      const id =
-        pick(row, ["id","ID","rowId","rowID","timestamp","Timestamp","timeStamp"]) ||
-        String(index + 1);
-
-      const ime = pick(row, ["ime","Ime","name","Name","fullName","Full Name","full_name"]);
-      const telefon = pick(row, ["telefon","Telefon","phone","Phone","broj","Broj"]);
-      const datum = pick(row, ["datum","Datum","date","Date"]);
-      const vreme = pick(row, ["vreme","Vreme","time","Time","termin","Termin"]);
-      const status = normStatus(pick(row, ["status","Status","STATUS"]));
-      const napomena = pick(row, ["napomena","Napomena","message","Message","poruka","Poruka","notes","Notes"]);
-      const createdAt = pick(row, ["createdAt","CreatedAt","created_at","timestamp","Timestamp","submittedAt","Submitted At"]);
-
-      return { raw: row, id, ime, telefon, datum, vreme, status, napomena, createdAt };
+    function normalizeStatus(raw) {
+      const s = normLower(raw);
+      if (!s) return 'Без статуса';
+      if (s.includes('odobreno') || s.includes('одобрено') || s.includes('approved')) return 'Одобрено';
+      if (s.includes('odbijeno') || s.includes('одбијено') || s.includes('rejected')) return 'Одбијено';
+      if (s.includes('na cekanju') || s.includes('na čekanju') || s.includes('на чекању') || s.includes('pending')) return 'На чекању';
+      return normText(raw);
     }
 
-    async function loadRows(){
-      setStatus("Учитавање...");
-      els.list.innerHTML = '<div class="loading">Учитавање резервација...</div>';
+    function parseRowsFromGviz(json) {
+      const cols = json.table.cols.map(col => col.label || '');
+      const keys = cols.map(normalizeHeaderKey);
+      const rows = json.table.rows || [];
 
-      try{
-        const url = API_URL + "?action=list&_t=" + Date.now();
-        const res = await fetch(url, { method:"GET" });
-        const data = await res.json();
+      return rows.map((row, index) => {
+        const obj = { _index: index + 2 };
 
-        let rows = [];
-        if (Array.isArray(data)) rows = data;
-        else if (Array.isArray(data.data)) rows = data.data;
-        else if (Array.isArray(data.rows)) rows = data.rows;
-        else if (Array.isArray(data.reservations)) rows = data.reservations;
-        else rows = [];
+        keys.forEach((key, i) => {
+          obj[key] = getCellValue((row.c || [])[i]);
+        });
 
-        state.rows = rows.map(normalizeRow);
+        obj.timestamp = normText(obj.timestamp);
+        obj.email = normText(obj.email);
+        obj.name = normText(obj.name);
+        obj.phone = normText(obj.phone);
+        obj.date = normText(obj.date);
+        obj.time = normText(obj.time);
+        obj.note = normText(obj.note);
+        obj.contact = normText(obj.contact);
+        obj.status = normalizeStatus(obj.status);
+
+        return obj;
+      }).filter(item => {
+        return item.name || item.phone || item.date || item.time || item.note || item.contact || item.status || item.timestamp;
+      });
+    }
+
+    function loadSheetData() {
+      els.metaLoaded.textContent = 'Учитавање резервација...';
+      els.list.innerHTML = '<div class="empty">Учитавање...</div>';
+
+      const old = document.getElementById('gvizScriptLoader');
+      if (old) old.remove();
+
+      const script = document.createElement('script');
+      script.id = 'gvizScriptLoader';
+      script.src =
+        'https://docs.google.com/spreadsheets/d/' +
+        SHEET_ID +
+        '/gviz/tq?gid=' +
+        SHEET_GID +
+        '&tqx=responseHandler:zenSheetCallback';
+
+      script.onerror = function () {
+        els.metaLoaded.textContent = 'Грешка: табела није учитана.';
+        els.list.innerHTML =
+          '<div class="empty">Не могу да учитам Google табелу.<br><br>Провери да ли је табела и даље подешена на <b>Anyone with the link → Viewer</b>.</div>';
+      };
+
+      document.body.appendChild(script);
+    }
+
+    window.zenSheetCallback = function (json) {
+      try {
+        state.raw = parseRowsFromGviz(json);
         applyFilters();
-        setStatus("Учитано: " + state.rows.length + " резервација.");
-        setLastUpdate();
-      }catch(err){
+        els.metaTime.textContent = 'Последње освежавање: ' + formatNow();
+      } catch (err) {
         console.error(err);
-        state.rows = [];
-        els.list.innerHTML = `
-          <div class="empty">
-            Није могуће учитати резервације.<br><br>
-            Овај admin.html је спреман, али Apps Script вероватно још нема <b>action=list</b> део.
-          </div>
-        `;
-        setStatus("Грешка при учитавању.");
+        els.metaLoaded.textContent = 'Грешка у обради података.';
+        els.list.innerHTML =
+          '<div class="empty">Подаци су стигли, али формат табеле није очекиван.<br><br>Ако хоћеш, следећи пут ћу ти прилагодити и колоне 100% по твојој табели.</div>';
       }
-    }
+    };
 
-    function applyFilters(){
-      const q = els.searchInput.value.trim().toLowerCase();
-      const sf = els.statusFilter.value.trim();
-      const df = els.dateFilter.value;
-      const sort = els.sortFilter.value;
+    function applyFilters() {
+      const q = normLower(els.searchInput.value);
+      const wantedStatus = els.statusFilter.value;
+      const wantedContact = els.contactFilter.value;
+      const sortMode = els.sortFilter.value;
 
-      let rows = [...state.rows];
+      let items = [...state.raw];
 
-      if (q){
-        rows = rows.filter(r =>
-          [r.ime, r.telefon, r.datum, r.vreme, r.status, r.napomena, r.createdAt]
-            .join(" ")
-            .toLowerCase()
-            .includes(q)
-        );
-      }
-
-      if (sf){
-        rows = rows.filter(r => r.status === sf);
-      }
-
-      if (df){
-        rows = rows.filter(r => normalizeDateStr(r.datum) === df);
+      if (q) {
+        items = items.filter(item => {
+          const hay = [
+            item.timestamp,
+            item.email,
+            item.name,
+            item.phone,
+            item.date,
+            item.time,
+            item.note,
+            item.contact,
+            item.status
+          ].map(normLower).join(' | ');
+          return hay.includes(q);
+        });
       }
 
-      rows.sort((a,b) => {
-        const av = parseSortable(a);
-        const bv = parseSortable(b);
-        return sort === "oldest" ? av - bv : bv - av;
+      if (wantedStatus !== 'all') {
+        items = items.filter(item => item.status === wantedStatus);
+      }
+
+      if (wantedContact !== 'all') {
+        items = items.filter(item => normLower(item.contact).includes(normLower(wantedContact)));
+      }
+
+      items.sort((a, b) => {
+        if (sortMode === 'oldest') return a._index - b._index;
+        if (sortMode === 'nameAsc') return a.name.localeCompare(b.name, 'sr');
+        if (sortMode === 'nameDesc') return b.name.localeCompare(a.name, 'sr');
+        return b._index - a._index;
       });
 
-      state.filtered = rows;
-      renderStats();
-      renderRows();
+      state.filtered = items;
+      renderStats(items);
+      renderList(items);
     }
 
-    function normalizeDateStr(v){
-      const s = String(v || "").trim();
-      if (!s) return "";
-
-      if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
-
-      const m1 = s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})\.?$/);
-      if (m1){
-        const dd = m1[1].padStart(2,"0");
-        const mm = m1[2].padStart(2,"0");
-        const yy = m1[3];
-        return `${yy}-${mm}-${dd}`;
-      }
-
-      return "";
-    }
-
-    function parseSortable(r){
-      const d = normalizeDateStr(r.datum);
-      const t = String(r.vreme || "").trim();
-      const base = d || "1970-01-01";
-      const time = /^\d{1,2}:\d{2}$/.test(t) ? t : "00:00";
-      return new Date(base + "T" + time + ":00").getTime() || 0;
-    }
-
-    function renderStats(){
-      const total = state.rows.length;
-      const pending = state.rows.filter(r => r.status === "NA ČEKANJU").length;
-      const approved = state.rows.filter(r => r.status === "ODOBRENO").length;
-      const rejected = state.rows.filter(r => r.status === "ODBIJENO").length;
+    function renderStats(items) {
+      const total = items.length;
+      const pending = items.filter(i => i.status === 'На чекању').length;
+      const approved = items.filter(i => i.status === 'Одобрено').length;
+      const rejected = items.filter(i => i.status === 'Одбијено').length;
 
       els.statTotal.textContent = total;
       els.statPending.textContent = pending;
       els.statApproved.textContent = approved;
       els.statRejected.textContent = rejected;
+
+      els.metaLoaded.textContent = 'Учитао: ' + total + ' резервација' + (total === 1 ? '' : (total >= 2 && total <= 4 ? 'е' : 'а')) + '.';
     }
 
-    function renderRows(){
-      if (!state.filtered.length){
-        els.list.innerHTML = `<div class="empty">Нема резервација за овај филтер.</div>`;
+    function badgeClass(status) {
+      if (status === 'Одобрено') return 'badge ok';
+      if (status === 'Одбијено') return 'badge bad';
+      return 'badge pending';
+    }
+
+    function renderList(items) {
+      if (!items.length) {
+        els.list.innerHTML = '<div class="empty">Нема резервација за овај филтер.</div>';
         return;
       }
 
-      els.list.innerHTML = state.filtered.map((r, i) => {
-        const bClass = badgeClass(r.status);
-
+      els.list.innerHTML = items.map(item => {
         return `
-          <div class="card">
+          <article class="card">
             <div class="card-top">
-              <div class="who">
-                <h3>${esc(r.ime || "Без имена")}</h3>
-                <div class="phone">${esc(r.telefon || "Без телефона")}</div>
+              <div>
+                <div class="name">${escapeHtml(item.name || 'Без имена')}</div>
+                <div class="sub">
+                  Унос #${item._index}${item.timestamp ? ' • ' + escapeHtml(item.timestamp) : ''}
+                </div>
               </div>
-              <div class="badge ${bClass}">${esc(r.status)}</div>
+              <div class="${badgeClass(item.status)}">${escapeHtml(item.status || 'Без статуса')}</div>
             </div>
 
             <div class="grid">
-              <div class="box">
-                <div class="label">Датум</div>
-                <div class="value">${esc(r.datum || "—")}</div>
+              <div class="item">
+                <div class="k">Телефон</div>
+                <div class="v">${escapeHtml(item.phone || '—')}</div>
               </div>
-              <div class="box">
-                <div class="label">Време</div>
-                <div class="value">${esc(r.vreme || "—")}</div>
+
+              <div class="item">
+                <div class="k">Имејл</div>
+                <div class="v">${escapeHtml(item.email || '—')}</div>
               </div>
-              <div class="box">
-                <div class="label">ID</div>
-                <div class="value">${esc(r.id || String(i+1))}</div>
+
+              <div class="item">
+                <div class="k">Датум</div>
+                <div class="v">${escapeHtml(item.date || '—')}</div>
               </div>
-              <div class="box">
-                <div class="label">Послато</div>
-                <div class="value">${esc(r.createdAt || "—")}</div>
+
+              <div class="item">
+                <div class="k">Време</div>
+                <div class="v">${escapeHtml(item.time || '—')}</div>
+              </div>
+
+              <div class="item">
+                <div class="k">Начин контакта</div>
+                <div class="v">${escapeHtml(item.contact || '—')}</div>
+              </div>
+
+              <div class="item">
+                <div class="k">Статус у табели</div>
+                <div class="v">${escapeHtml(item.status || '—')}</div>
               </div>
             </div>
 
-            ${r.napomena ? `<div class="note">${esc(r.napomena)}</div>` : ""}
-
-            <div class="row-actions">
-              <button class="green" onclick="updateStatus('${escJs(r.id)}','ODOBRENO')">ОДОБРИ</button>
-              <button class="red" onclick="updateStatus('${escJs(r.id)}','ODBIJENO')">ОДБИЈ</button>
-              <button class="yellow" onclick="updateStatus('${escJs(r.id)}','NA ČEKANJU')">ВРАТИ НА ЧЕКАЊЕ</button>
-            </div>
-          </div>
+            ${item.note ? `<div class="note"><b>Напомена:</b> ${escapeHtml(item.note)}</div>` : ''}
+          </article>
         `;
-      }).join("");
+      }).join('');
     }
 
-    function escJs(v){
-      return String(v ?? "").replaceAll("\\","\\\\").replaceAll("'","\\'");
-    }
+    els.searchInput.addEventListener('input', applyFilters);
+    els.statusFilter.addEventListener('change', applyFilters);
+    els.contactFilter.addEventListener('change', applyFilters);
+    els.sortFilter.addEventListener('change', applyFilters);
+    els.btnRefresh.addEventListener('click', loadSheetData);
 
-    async function updateStatus(id, status){
-      const ok = confirm("Да ли си сигуран?\n\nID: " + id + "\nНови статус: " + status);
-      if (!ok) return;
-
-      setStatus("Снимање статуса...");
-
-      try{
-        const body = new URLSearchParams();
-        body.append("action", "updateStatus");
-        body.append("id", id);
-        body.append("status", status);
-
-        const res = await fetch(API_URL, {
-          method: "POST",
-          body
-        });
-
-        let data = null;
-        try { data = await res.json(); } catch(e){}
-
-        if (!res.ok){
-          throw new Error("HTTP " + res.status);
-        }
-
-        const row = state.rows.find(r => String(r.id) === String(id));
-        if (row) row.status = status;
-
-        applyFilters();
-        setStatus("Статус је ажуриран.");
-        setLastUpdate();
-
-        if (data && data.message){
-          setStatus(data.message);
-        }
-      }catch(err){
-        console.error(err);
-        setStatus("Није успело ажурирање. Потребан је Apps Script део за updateStatus.");
-        alert("Овај admin.html је спреман, али Apps Script вероватно још нема action=updateStatus.");
-      }
-    }
-
-    els.searchInput.addEventListener("input", applyFilters);
-    els.statusFilter.addEventListener("change", applyFilters);
-    els.dateFilter.addEventListener("change", applyFilters);
-    els.sortFilter.addEventListener("change", applyFilters);
-    els.btnRefresh.addEventListener("click", loadRows);
-
-    loadRows();
+    loadSheetData();
   </script>
 </body>
 </html>
