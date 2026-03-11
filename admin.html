@@ -1,691 +1,159 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>ZEN ADMIN PANEL</title>
-  <meta name="theme-color" content="#07110b" />
-  <style>
-    :root{
-      --bg:#06110d;
-      --bg2:#0b1d16;
-      --card:rgba(10,34,24,.82);
-      --line:rgba(155,255,190,.16);
-      --text:#eef8f0;
-      --muted:#b6cbbd;
-      --accent:#8cffb0;
-      --accent2:#45d47c;
-      --warn:#ffd166;
-      --ok:#5ce38d;
-      --bad:#ff7b7b;
-      --pending:#ffcf66;
-      --shadow:0 10px 40px rgba(0,0,0,.38);
-      --radius:22px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEN Bilijar Admin</title>
 
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:Arial,Helvetica,sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(51,140,88,.18), transparent 26%),
-        radial-gradient(circle at top left, rgba(41,111,69,.12), transparent 28%),
-        linear-gradient(180deg, var(--bg2), var(--bg));
-      color:var(--text);
-      min-height:100vh;
-    }
+<style>
+body{
+font-family:Arial;
+background:#0f1218;
+color:white;
+padding:30px;
+}
 
-    .wrap{
-      width:min(1200px, calc(100% - 24px));
-      margin:18px auto 32px;
-    }
+.panel{
+background:#181d26;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+}
 
-    .topbar{
-      display:flex;
-      gap:12px;
-      align-items:stretch;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom:14px;
-    }
+input,select,button{
+padding:10px;
+margin:5px;
+border-radius:6px;
+border:none;
+}
 
-    .hero{
-      flex:1 1 520px;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:18px 20px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
-    }
+button{
+background:#00c2ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
 
-    .hero h1{
-      margin:0 0 6px;
-      font-size:clamp(28px, 4vw, 44px);
-      line-height:1;
-      letter-spacing:.4px;
-    }
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
 
-    .hero p{
-      margin:0;
-      color:var(--muted);
-      font-size:16px;
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      color:#fff;
-      background:linear-gradient(180deg,#294a36,#1d3427);
-      border:1px solid var(--line);
-      min-height:54px;
-      padding:0 18px;
-      border-radius:18px;
-      font-weight:700;
-      font-size:16px;
-      box-shadow:var(--shadow);
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      transition:transform .15s ease, filter .15s ease;
-    }
-
-    .btn:hover{filter:brightness(1.07)}
-    .btn:active{transform:scale(.98)}
-    .btn.secondary{
-      background:linear-gradient(180deg,#173126,#11271e);
-    }
-
-    .btn.warn{
-      background:linear-gradient(180deg,#5a4520,#3b2d12);
-    }
-
-    .panel{
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:18px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(10px);
-    }
-
-    .controls{
-      display:grid;
-      grid-template-columns:1.2fr 1fr 1fr 1fr;
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    .field{
-      width:100%;
-      min-height:56px;
-      border-radius:18px;
-      border:1px solid rgba(141,255,181,.16);
-      background:rgba(4,24,16,.72);
-      color:#fff;
-      padding:0 16px;
-      outline:none;
-      font-size:16px;
-    }
-
-    .field::placeholder{color:#9fb5a7}
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:12px;
-      margin-bottom:14px;
-    }
-
-    .stat{
-      background:rgba(4,24,16,.72);
-      border:1px solid rgba(141,255,181,.14);
-      border-radius:20px;
-      padding:16px;
-      min-height:110px;
-    }
-
-    .stat .label{
-      color:var(--muted);
-      font-size:15px;
-      margin-bottom:8px;
-    }
-
-    .stat .value{
-      font-size:42px;
-      font-weight:800;
-      line-height:1;
-    }
-
-    .meta{
-      display:flex;
-      gap:12px;
-      justify-content:space-between;
-      align-items:center;
-      color:var(--muted);
-      font-size:15px;
-      flex-wrap:wrap;
-      margin:4px 2px 14px;
-    }
-
-    .list{
-      display:grid;
-      gap:12px;
-    }
-
-    .card{
-      background:rgba(4,24,16,.75);
-      border:1px solid rgba(141,255,181,.12);
-      border-radius:22px;
-      padding:16px;
-    }
-
-    .card-top{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      justify-content:space-between;
-      margin-bottom:12px;
-      flex-wrap:wrap;
-    }
-
-    .name{
-      font-size:22px;
-      font-weight:800;
-      line-height:1.15;
-      margin:0 0 6px;
-    }
-
-    .sub{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.45;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:38px;
-      padding:0 14px;
-      border-radius:999px;
-      font-size:14px;
-      font-weight:800;
-      border:1px solid transparent;
-      white-space:nowrap;
-    }
-
-    .badge.pending{
-      color:#251a00;
-      background:var(--pending);
-    }
-
-    .badge.ok{
-      color:#052211;
-      background:var(--ok);
-    }
-
-    .badge.bad{
-      color:#fff;
-      background:var(--bad);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-    }
-
-    .item{
-      background:rgba(255,255,255,.025);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:16px;
-      padding:12px;
-    }
-
-    .item .k{
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:4px;
-    }
-
-    .item .v{
-      font-size:16px;
-      font-weight:700;
-      word-break:break-word;
-    }
-
-    .note{
-      margin-top:10px;
-      background:rgba(255,255,255,.02);
-      border:1px dashed rgba(255,255,255,.1);
-      border-radius:16px;
-      padding:12px;
-      color:#dce9df;
-      line-height:1.5;
-    }
-
-    .empty{
-      text-align:center;
-      color:#d7e4d8;
-      background:rgba(255,255,255,.02);
-      border:1px dashed rgba(255,255,255,.12);
-      border-radius:22px;
-      padding:34px 18px;
-      font-size:20px;
-    }
-
-    .footer-note{
-      margin-top:14px;
-      color:var(--muted);
-      text-align:center;
-      font-size:14px;
-      line-height:1.5;
-    }
-
-    .tiny{
-      font-size:12px;
-      color:#99b09f;
-    }
-
-    @media (max-width: 980px){
-      .controls{grid-template-columns:1fr 1fr}
-      .stats{grid-template-columns:1fr 1fr}
-    }
-
-    @media (max-width: 640px){
-      .wrap{width:min(100% - 14px, 1200px); margin:10px auto 24px}
-      .hero{padding:16px}
-      .hero h1{font-size:24px}
-      .hero p{font-size:14px}
-      .panel{padding:14px}
-      .controls{grid-template-columns:1fr}
-      .stats{grid-template-columns:1fr 1fr}
-      .stat{min-height:96px}
-      .stat .value{font-size:34px}
-      .grid{grid-template-columns:1fr}
-      .name{font-size:20px}
-      .btn{min-height:50px; padding:0 14px; font-size:15px}
-    }
-  </style>
+td,th{
+padding:10px;
+border-bottom:1px solid #333;
+}
+</style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="hero">
-        <h1>ZEN ADMIN PANEL</h1>
-        <p>Преглед резервација са телефона или рачунара — чита директно из Google табеле.</p>
-      </div>
 
-      <div class="actions">
-        <button class="btn secondary" id="btnRefresh">Освежи</button>
-        <a class="btn" href="index.html">Назад на сајт</a>
-        <a class="btn warn" id="btnSheet" href="#" target="_blank" rel="noopener">Отвори табелу</a>
-      </div>
-    </div>
+<h1>🎱 ZEN BILIJAR ADMIN</h1>
 
-    <div class="panel">
-      <div class="controls">
-        <input id="searchInput" class="field" type="text" placeholder="Претрага: име, телефон, датум, време..." />
-        <select id="statusFilter" class="field">
-          <option value="all">Сви статуси</option>
-          <option value="На чекању">На чекању</option>
-          <option value="Одобрено">Одобрено</option>
-          <option value="Одбијено">Одбијено</option>
-          <option value="Без статуса">Без статуса</option>
-        </select>
-        <select id="contactFilter" class="field">
-          <option value="all">Сви начини контакта</option>
-          <option value="Телефон">Телефон</option>
-          <option value="Позив">Позив</option>
-          <option value="Viber">Viber</option>
-          <option value="Вибер">Вибер</option>
-          <option value="SMS">SMS</option>
-          <option value="WhatsApp">WhatsApp</option>
-          <option value="Емаил">Емаил</option>
-          <option value="Имејл">Имејл</option>
-          <option value="Email">Email</option>
-        </select>
-        <select id="sortFilter" class="field">
-          <option value="newest">Најновије прво</option>
-          <option value="oldest">Најстарије прво</option>
-          <option value="nameAsc">Име А-Ш</option>
-          <option value="nameDesc">Име Ш-А</option>
-        </select>
-      </div>
+<div class="panel">
+<h3>Pretraga rezervacije</h3>
 
-      <div class="stats">
-        <div class="stat">
-          <div class="label">Укупно</div>
-          <div class="value" id="statTotal">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">На чекању</div>
-          <div class="value" id="statPending">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">Одобрено</div>
-          <div class="value" id="statApproved">0</div>
-        </div>
-        <div class="stat">
-          <div class="label">Одбијено</div>
-          <div class="value" id="statRejected">0</div>
-        </div>
-      </div>
+<input id="phone" placeholder="Telefon">
+<input id="code" placeholder="Šifra rezervacije">
 
-      <div class="meta">
-        <div id="metaLoaded">Учитавање...</div>
-        <div id="metaTime">Последње освежавање: —</div>
-      </div>
+<button onclick="lookup()">Pretraži</button>
 
-      <div id="reservationList" class="list"></div>
+<div id="result"></div>
+</div>
 
-      <div class="footer-note">
-        Ова верзија је <b>стабилна read-only верзија</b>: чита из Google табеле без Apps Script мучења.<br />
-        За ручну промену статуса отвори табелу и мењај колону <b>STATUS</b>.<br />
-        <span class="tiny">Касније можемо направити и пуну write верзију са дугмадима „Одобри / Одбиј“.</span>
-      </div>
-    </div>
-  </div>
+<div class="panel">
+<h3>Promena statusa</h3>
 
-  <script>
-    /**********************************************************
-      ZEN ADMIN — GOOGLE SHEET READ-ONLY
-      Марков фајл за замену
-    **********************************************************/
+<input id="statusCode" placeholder="Šifra rezervacije">
 
-    const SHEET_ID = '1VKJAnPpLCwmUjTLQqgC_3Qgvit3AgDuap2aoGZdq0TI';
-    const SHEET_GID = '0';
-    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit?gid=' + SHEET_GID;
+<select id="status">
+<option value="Na čekanju">Na čekanju</option>
+<option value="Potvrđeno">Potvrđeno</option>
+<option value="Otkazano">Otkazano</option>
+<option value="Završeno">Završeno</option>
+</select>
 
-    const state = {
-      raw: [],
-      filtered: []
-    };
+<button onclick="updateStatus()">Promeni status</button>
 
-    const els = {
-      list: document.getElementById('reservationList'),
-      statTotal: document.getElementById('statTotal'),
-      statPending: document.getElementById('statPending'),
-      statApproved: document.getElementById('statApproved'),
-      statRejected: document.getElementById('statRejected'),
-      metaLoaded: document.getElementById('metaLoaded'),
-      metaTime: document.getElementById('metaTime'),
-      searchInput: document.getElementById('searchInput'),
-      statusFilter: document.getElementById('statusFilter'),
-      contactFilter: document.getElementById('contactFilter'),
-      sortFilter: document.getElementById('sortFilter'),
-      btnRefresh: document.getElementById('btnRefresh'),
-      btnSheet: document.getElementById('btnSheet')
-    };
+<div id="statusResult"></div>
+</div>
 
-    els.btnSheet.href = SHEET_URL;
+<script>
 
-    function normText(v) {
-      return String(v || '')
-        .replace(/\s+/g, ' ')
-        .trim();
-    }
+const API="PASTE_TVOJ_GOOGLE_SCRIPT_URL_OVDE";
 
-    function normLower(v) {
-      return normText(v)
-        .toLowerCase()
-        .replace(/č/g, 'c')
-        .replace(/ć/g, 'c')
-        .replace(/ž/g, 'z')
-        .replace(/š/g, 's')
-        .replace(/đ/g, 'dj');
-    }
+async function lookup(){
 
-    function escapeHtml(str) {
-      return String(str || '')
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
+const phone=document.getElementById("phone").value;
+const code=document.getElementById("code").value;
 
-    function formatNow() {
-      return new Date().toLocaleString('sr-RS');
-    }
+let url=API+"?action=lookup";
 
-    function getCellValue(cell) {
-      if (!cell) return '';
-      if (typeof cell.v !== 'undefined' && cell.v !== null) return String(cell.v);
-      if (typeof cell.f !== 'undefined' && cell.f !== null) return String(cell.f);
-      return '';
-    }
+if(phone) url+="&telefon="+phone;
+if(code) url+="&sifra="+code;
 
-    function normalizeHeaderKey(header) {
-      const h = normLower(header);
+const res=await fetch(url);
+const data=await res.json();
 
-      if (h.includes('vremenska oznaka') || h === 'timestamp' || h.includes('datum unosa')) return 'timestamp';
-      if (h.includes('imejl') || h.includes('email') || h.includes('e-mail')) return 'email';
-      if (h.includes('ime i prezime') || h === 'ime' || h.includes('puno ime')) return 'name';
-      if (h.includes('telefon') || h.includes('broj telefona') || h === 'broj') return 'phone';
-      if (h === 'datum' || h.includes('datum rezervacije')) return 'date';
-      if (h === 'vreme' || h.includes('termin') || h.includes('satnica')) return 'time';
-      if (h.includes('napomena') || h.includes('poruka') || h.includes('komentar')) return 'note';
-      if (h.includes('kako da vas kontaktiramo') || h.includes('nacin kontakta') || h.includes('kontaktiramo')) return 'contact';
-      if (h.includes('status')) return 'status';
+show(data);
 
-      return header;
-    }
+}
 
-    function normalizeStatus(raw) {
-      const s = normLower(raw);
-      if (!s) return 'Без статуса';
-      if (s.includes('odobreno') || s.includes('одобрено') || s.includes('approved')) return 'Одобрено';
-      if (s.includes('odbijeno') || s.includes('одбијено') || s.includes('rejected')) return 'Одбијено';
-      if (s.includes('na cekanju') || s.includes('na čekanju') || s.includes('на чекању') || s.includes('pending')) return 'На чекању';
-      return normText(raw);
-    }
+function show(data){
 
-    function parseRowsFromGviz(json) {
-      const cols = json.table.cols.map(col => col.label || '');
-      const keys = cols.map(normalizeHeaderKey);
-      const rows = json.table.rows || [];
+const div=document.getElementById("result");
 
-      return rows.map((row, index) => {
-        const obj = { _index: index + 2 };
+if(!data.ok){
+div.innerHTML="Nema rezultata";
+return;
+}
 
-        keys.forEach((key, i) => {
-          obj[key] = getCellValue((row.c || [])[i]);
-        });
+const r=data.reservation;
 
-        obj.timestamp = normText(obj.timestamp);
-        obj.email = normText(obj.email);
-        obj.name = normText(obj.name);
-        obj.phone = normText(obj.phone);
-        obj.date = normText(obj.date);
-        obj.time = normText(obj.time);
-        obj.note = normText(obj.note);
-        obj.contact = normText(obj.contact);
-        obj.status = normalizeStatus(obj.status);
+div.innerHTML=`
+<table>
+<tr>
+<th>Šifra</th>
+<th>Ime</th>
+<th>Telefon</th>
+<th>Datum</th>
+<th>Termin</th>
+<th>Status</th>
+</tr>
 
-        return obj;
-      }).filter(item => {
-        return item.name || item.phone || item.date || item.time || item.note || item.contact || item.status || item.timestamp;
-      });
-    }
+<tr>
+<td>${r.code}</td>
+<td>${r.name}</td>
+<td>${r.phone}</td>
+<td>${r.date}</td>
+<td>${r.time}</td>
+<td>${r.status}</td>
+</tr>
+</table>
+`;
 
-    function loadSheetData() {
-      els.metaLoaded.textContent = 'Учитавање резервација...';
-      els.list.innerHTML = '<div class="empty">Учитавање...</div>';
+}
 
-      const old = document.getElementById('gvizScriptLoader');
-      if (old) old.remove();
+async function updateStatus(){
 
-      const script = document.createElement('script');
-      script.id = 'gvizScriptLoader';
-      script.src =
-        'https://docs.google.com/spreadsheets/d/' +
-        SHEET_ID +
-        '/gviz/tq?gid=' +
-        SHEET_GID +
-        '&tqx=responseHandler:zenSheetCallback';
+const code=document.getElementById("statusCode").value;
+const status=document.getElementById("status").value;
 
-      script.onerror = function () {
-        els.metaLoaded.textContent = 'Грешка: табела није учитана.';
-        els.list.innerHTML =
-          '<div class="empty">Не могу да учитам Google табелу.<br><br>Провери да ли је табела и даље подешена на <b>Anyone with the link → Viewer</b>.</div>';
-      };
+await fetch(API,{
+method:"POST",
+body:JSON.stringify({
+action:"adminUpdateStatus",
+code:code,
+status:status
+})
+});
 
-      document.body.appendChild(script);
-    }
+document.getElementById("statusResult").innerText="Status promenjen.";
 
-    window.zenSheetCallback = function (json) {
-      try {
-        state.raw = parseRowsFromGviz(json);
-        applyFilters();
-        els.metaTime.textContent = 'Последње освежавање: ' + formatNow();
-      } catch (err) {
-        console.error(err);
-        els.metaLoaded.textContent = 'Грешка у обради података.';
-        els.list.innerHTML =
-          '<div class="empty">Подаци су стигли, али формат табеле није очекиван.<br><br>Ако хоћеш, следећи пут ћу ти прилагодити и колоне 100% по твојој табели.</div>';
-      }
-    };
+}
 
-    function applyFilters() {
-      const q = normLower(els.searchInput.value);
-      const wantedStatus = els.statusFilter.value;
-      const wantedContact = els.contactFilter.value;
-      const sortMode = els.sortFilter.value;
+</script>
 
-      let items = [...state.raw];
-
-      if (q) {
-        items = items.filter(item => {
-          const hay = [
-            item.timestamp,
-            item.email,
-            item.name,
-            item.phone,
-            item.date,
-            item.time,
-            item.note,
-            item.contact,
-            item.status
-          ].map(normLower).join(' | ');
-          return hay.includes(q);
-        });
-      }
-
-      if (wantedStatus !== 'all') {
-        items = items.filter(item => item.status === wantedStatus);
-      }
-
-      if (wantedContact !== 'all') {
-        items = items.filter(item => normLower(item.contact).includes(normLower(wantedContact)));
-      }
-
-      items.sort((a, b) => {
-        if (sortMode === 'oldest') return a._index - b._index;
-        if (sortMode === 'nameAsc') return a.name.localeCompare(b.name, 'sr');
-        if (sortMode === 'nameDesc') return b.name.localeCompare(a.name, 'sr');
-        return b._index - a._index;
-      });
-
-      state.filtered = items;
-      renderStats(items);
-      renderList(items);
-    }
-
-    function renderStats(items) {
-      const total = items.length;
-      const pending = items.filter(i => i.status === 'На чекању').length;
-      const approved = items.filter(i => i.status === 'Одобрено').length;
-      const rejected = items.filter(i => i.status === 'Одбијено').length;
-
-      els.statTotal.textContent = total;
-      els.statPending.textContent = pending;
-      els.statApproved.textContent = approved;
-      els.statRejected.textContent = rejected;
-
-      els.metaLoaded.textContent = 'Учитао: ' + total + ' резервација' + (total === 1 ? '' : (total >= 2 && total <= 4 ? 'е' : 'а')) + '.';
-    }
-
-    function badgeClass(status) {
-      if (status === 'Одобрено') return 'badge ok';
-      if (status === 'Одбијено') return 'badge bad';
-      return 'badge pending';
-    }
-
-    function renderList(items) {
-      if (!items.length) {
-        els.list.innerHTML = '<div class="empty">Нема резервација за овај филтер.</div>';
-        return;
-      }
-
-      els.list.innerHTML = items.map(item => {
-        return `
-          <article class="card">
-            <div class="card-top">
-              <div>
-                <div class="name">${escapeHtml(item.name || 'Без имена')}</div>
-                <div class="sub">
-                  Унос #${item._index}${item.timestamp ? ' • ' + escapeHtml(item.timestamp) : ''}
-                </div>
-              </div>
-              <div class="${badgeClass(item.status)}">${escapeHtml(item.status || 'Без статуса')}</div>
-            </div>
-
-            <div class="grid">
-              <div class="item">
-                <div class="k">Телефон</div>
-                <div class="v">${escapeHtml(item.phone || '—')}</div>
-              </div>
-
-              <div class="item">
-                <div class="k">Имејл</div>
-                <div class="v">${escapeHtml(item.email || '—')}</div>
-              </div>
-
-              <div class="item">
-                <div class="k">Датум</div>
-                <div class="v">${escapeHtml(item.date || '—')}</div>
-              </div>
-
-              <div class="item">
-                <div class="k">Време</div>
-                <div class="v">${escapeHtml(item.time || '—')}</div>
-              </div>
-
-              <div class="item">
-                <div class="k">Начин контакта</div>
-                <div class="v">${escapeHtml(item.contact || '—')}</div>
-              </div>
-
-              <div class="item">
-                <div class="k">Статус у табели</div>
-                <div class="v">${escapeHtml(item.status || '—')}</div>
-              </div>
-            </div>
-
-            ${item.note ? `<div class="note"><b>Напомена:</b> ${escapeHtml(item.note)}</div>` : ''}
-          </article>
-        `;
-      }).join('');
-    }
-
-    els.searchInput.addEventListener('input', applyFilters);
-    els.statusFilter.addEventListener('change', applyFilters);
-    els.contactFilter.addEventListener('change', applyFilters);
-    els.sortFilter.addEventListener('change', applyFilters);
-    els.btnRefresh.addEventListener('click', loadSheetData);
-
-    loadSheetData();
-  </script>
 </body>
 </html>
