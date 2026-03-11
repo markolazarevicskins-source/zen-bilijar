@@ -1810,8 +1810,12 @@ Molim potvrdu termina.`;
 
       try{
         const url = new URL(WEB_APP_URL);
-        if(phone) url.searchParams.set("telefon", phone);
-        if(code) url.searchParams.set("sifra", code);
+
+url.searchParams.set("action","lookup");
+
+if(phone) url.searchParams.set("telefon", phone);
+if(code) url.searchParams.set("sifra", code);
+      
 
         const response = await fetch(url.toString(), { method: "GET", redirect: "follow" });
         const text = await response.text();
