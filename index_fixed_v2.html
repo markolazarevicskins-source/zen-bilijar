@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>ZEN BILIJAR KUĆICA | Bilijar, pikado i rezervacije | Beograd</title>
+  <meta name="description" content="ZEN BILIJAR KUĆICA je bilijar klub i caffe bar u Beogradu, preko puta Cvetkove pijace. Bilijar, pikado, noćna atmosfera i brze rezervacije." />
+  <meta name="keywords" content="ZEN Bilijar Kućica, bilijar Beograd, rezervacije bilijar, pikado, Cvetkova pijaca, caffe bar" />
+  <meta name="author" content="ZEN BILIJAR KUĆICA" />
+  <meta name="theme-color" content="#07110b" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://zenbilijar.netlify.app/" />
+
+  <meta property="og:title" content="ZEN BILIJAR KUĆICA | Bilijar, pikado i rezervacije | Beograd" />
+  <meta property="og:description" content="Bilijar klub i caffe bar u Beogradu. Dva kvalitetna stola, pikado, noćna atmosfera i brze rezervacije." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="sr_RS" />
+  <meta property="og:url" content="https://zenbilijar.netlify.app/" />
+  <meta property="og:image" content="./bilijar.jpg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ZEN BILIJAR KUĆICA" />
+  <meta name="twitter:description" content="Bilijar, pikado, noćna atmosfera i rezervacije u Beogradu." />
+  <meta name="twitter:image" content="./bilijar.jpg" />
+
+  <style>
+    :root{
+      --bg:#030705;
+      --bg2:#07110b;
+      --panel:#0b1510;
+      --panel2:#102017;
+      --line:rgba(46,255,150,.14);
+      --line2:rgba(46,255,150,.24);
+      --text:#f3fff8;
+      --muted:#b9d8c7;
+      --green:#2cff88;
+      --green2:#00ff99;
+      --gold:#f2d59a;
+      --danger:#ff7d7d;
+      --warn:#ffca7d;
+      --info:#8fd6ff;
+      --shadow:0 0 0 1px rgba(46,255,150,.08), 0 0 32px rgba(46,255,150,.08), 0 24px 60px rgba(0,0,0,.45);
+      --radius:24px;
+      --max:1240px;
+      --header:78px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(46,255,150,.10), transparent 18%),
+        radial-gradient(circle at 10% 8%, rgba(0,255,153,.06), transparent 16%),
+        linear-gradient(180deg,#020403 0%,#07110b 100%);
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    button,input,textarea,select{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    .container{width:min(var(--max),calc(100% - 28px));margin:0 auto}
+    .section{padding:44px 0}
+    .panel{
+      background:linear-gradient(180deg, rgba(11,21,16,.94), rgba(7,16,11,.94));
+      border:1px solid var(--line);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
+    .section-kicker{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(46,255,150,.16);
+      background:rgba(46,255,150,.08);
+      font-size:.84rem;
+      font-weight:800;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      margin-bottom:12px;
+    }
+    .section-title{
+      margin:0;
+      font-size:clamp(1.9rem,4vw,3rem);
+      line-height:1.06;
+      letter-spacing:-.8px;
+    }
+    .section-desc{
+      margin:12px 0 0;
+      color:var(--muted);
+      max-width:900px;
+      line-height:1.72;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:52px;
+      padding:14px 18px;
+      border-radius:16px;
+      font-weight:800;
+      border:1px solid transparent;
+      transition:.22s ease;
+      text-align:center;
+      cursor:pointer;
+      color:#fff !important;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{
+      background:linear-gradient(90deg,#13f28d,#00d977);
+      color:#051109 !important;
+      box-shadow:0 0 26px rgba(18,242,141,.24);
+    }
+    .btn-secondary{
+      background:rgba(255,255,255,.04);
+      color:#fff !important;
+      border-color:rgba(46,255,150,.14);
+    }
+    .btn-outline{
+      background:transparent;
+      color:#fff !important;
+      border-color:rgba(46,255,150,.24);
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(3,7,5,.76);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-wrap{
+      min-height:var(--header);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+    .brand-mark{
+      width:54px;
+      height:54px;
+      flex:0 0 auto;
+      border-radius:16px;
+      border:1px solid var(--line2);
+      background:
+        radial-gradient(circle at 35% 35%, rgba(152,255,202,.18), transparent 35%),
+        linear-gradient(145deg,#08120d,#102016);
+      display:grid;
+      place-items:center;
+      box-shadow:0 0 24px rgba(46,255,150,.14);
+      font-weight:900;
+      font-size:1.35rem;
+      color:#c9ffe2;
+    }
+    .brand-text h1{
+      margin:0;
+      font-size:1rem;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand-text p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-link{
+      padding:10px 14px;
+      border-radius:999px;
+      color:#eafff2;
+      transition:.22s ease;
+      font-size:.96rem;
+    }
+    .nav-link:hover{background:rgba(46,255,150,.08)}
+    .mobile-btn{
+      display:none;
+      width:46px;
+      height:46px;
+      border:none;
+      border-radius:14px;
+      background:linear-gradient(180deg,#0d1712,#08110d);
+      border:1px solid rgba(46,255,150,.16);
+      color:#fff;
+      box-shadow:var(--shadow);
+      cursor:pointer;
+    }
+    .mobile-menu{display:none;padding:0 0 16px}
+    .mobile-menu.open{display:block}
+    .mobile-panel{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(9,17,13,.96);
+      padding:14px;
+      box-shadow:var(--shadow);
+    }
+    .mobile-links{display:grid;gap:10px}
+    .mobile-links a{
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(46,255,150,.08);
+      background:rgba(255,255,255,.02);
+    }
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      isolation:isolate;
+      border-bottom:1px solid rgba(46,255,150,.10);
+    }
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.72)),
+        linear-gradient(90deg, rgba(2,4,3,.94) 0%, rgba(2,4,3,.56) 42%, rgba(2,4,3,.74) 100%),
+        url("./bilijar.jpg") center center / cover no-repeat;
+      z-index:-5;
+      transform:scale(1.03);
+    }
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 14%, rgba(255,220,150,.24), transparent 14%),
+        radial-gradient(circle at 18% 30%, rgba(46,255,150,.12), transparent 22%),
+        radial-gradient(circle at 84% 68%, rgba(46,255,150,.08), transparent 18%);
+      z-index:-4;
+      pointer-events:none;
+    }
+    .hero-grid{
+      width:100%;
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:24px;
+      align-items:center;
+      padding:56px 0 40px;
+    }
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(46,255,150,.18);
+      background:rgba(46,255,150,.08);
+      box-shadow:0 0 18px rgba(46,255,150,.12);
+      font-size:.88rem;
+      font-weight:800;
+      max-width:100%;
+    }
+    .hero-title{
+      margin:18px 0 12px;
+      font-size:clamp(2.7rem,6vw,5.8rem);
+      line-height:.96;
+      letter-spacing:-1.6px;
+    }
+    .hero-title .glow{
+      background:linear-gradient(90deg,#ffffff 0%,#d9ffea 30%,#93ffcb 68%,#1eff9d 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 24px rgba(46,255,150,.10);
+    }
+    .hero-sub{
+      margin:0;
+      font-size:1.16rem;
+      color:#effff5;
+      font-weight:700;
+      max-width:760px;
+    }
+    .hero-desc{
+      margin:18px 0 0;
+      color:var(--muted);
+      line-height:1.76;
+      max-width:760px;
+      font-size:1.02rem;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:28px;
+    }
+    .hero-mini{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:12px;
+      margin-top:24px;
+      max-width:860px;
+    }
+    .mini-box{
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(46,255,150,.12);
+      background:rgba(255,255,255,.03);
+      box-shadow:0 0 18px rgba(46,255,150,.05);
+    }
+    .mini-box strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:6px;
+      color:#fff;
+    }
+    .mini-box span{
+      display:block;
+      color:var(--muted);
+      font-size:.91rem;
+      line-height:1.55;
+    }
+    .hero-card{
+      width:min(100%, 440px);
+      padding:22px;
+      border-radius:28px;
+      border:1px solid rgba(46,255,150,.16);
+      background:linear-gradient(180deg, rgba(10,18,14,.82), rgba(10,18,14,.56));
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(8px);
+      position:relative;
+      overflow:hidden;
+      margin-left:auto;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top right, rgba(46,255,150,.14), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.03), transparent 28%);
+      pointer-events:none;
+    }
+    .hero-card-title{
+      margin:0 0 14px;
+      font-size:1.18rem;
+      position:relative;
+      z-index:1;
+    }
+    .hero-stat{
+      display:grid;
+      grid-template-columns:64px 1fr;
+      gap:14px;
+      align-items:start;
+      padding:14px;
+      border-radius:20px;
+      border:1px solid rgba(46,255,150,.10);
+      background:rgba(255,255,255,.03);
+      position:relative;
+      z-index:1;
+    }
+    .hero-stat + .hero-stat{margin-top:12px}
+    .hero-stat-icon{
+      width:64px;height:64px;border-radius:18px;
+      display:grid;place-items:center;
+      background:rgba(46,255,150,.10);
+      border:1px solid rgba(46,255,150,.16);
+      font-size:1.2rem;font-weight:900;color:#fff;
+    }
+    .hero-stat h3{margin:0 0 6px;font-size:1rem}
+    .hero-stat p{margin:0;color:var(--muted);line-height:1.6;font-size:.95rem}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+    .pad{padding:26px}
+    .stack{display:grid;gap:14px}
+    .stack-card{
+      padding:18px;
+      border-radius:22px;
+      border:1px solid rgba(46,255,150,.10);
+      background:rgba(255,255,255,.02);
+    }
+    .stack-card h3{margin:0 0 8px;font-size:1.04rem}
+    .stack-card p{margin:0;color:var(--muted);line-height:1.66}
+
+    .scene{
+      position:relative;
+      min-height:560px;
+      border:1px solid rgba(46,255,150,.12);
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.26), rgba(0,0,0,.70)),
+        url("./scena-kluba.jpg") center center / cover no-repeat;
+    }
+    .scene::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,215,145,.18), transparent 16%),
+        radial-gradient(circle at 70% 50%, rgba(46,255,150,.09), transparent 20%);
+    }
+    .scene-content{
+      position:absolute;
+      left:24px;
+      right:24px;
+      bottom:24px;
+      max-width:760px;
+      z-index:2;
+    }
+    .scene-badge{
+      display:inline-flex;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid rgba(46,255,150,.16);
+      background:rgba(46,255,150,.10);
+      font-size:.82rem;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+    .scene h3{
+      margin:0 0 10px;
+      font-size:clamp(1.7rem,4vw,2.8rem);
+      line-height:1.08;
+    }
+    .scene p{
+      margin:0;
+      color:#dff8ea;
+      line-height:1.72;
+      font-size:1rem;
+      max-width:680px;
+    }
+
+    .res-wrap{
+      display:grid;
+      grid-template-columns:1.04fr .96fr;
+      gap:20px;
+      margin-top:18px;
+    }
+    .res-card{
+      padding:26px;
+      border-radius:28px;
+      border:1px solid rgba(46,255,150,.10);
+      background:linear-gradient(180deg, rgba(11,21,16,.94), rgba(7,16,11,.94));
+      box-shadow:var(--shadow);
+    }
+    .res-form{display:grid;gap:14px}
+    .res-grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .res-grid-3{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:14px;
+    }
+    .field{display:grid;gap:8px}
+    .field label{
+      font-size:.92rem;
+      font-weight:700;
+      color:#eafff2;
+    }
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      min-height:52px;
+      border-radius:16px;
+      border:1px solid rgba(46,255,150,.14);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      padding:14px 14px;
+      outline:none;
+      transition:.2s ease;
+    }
+    .field textarea{min-height:120px;resize:vertical}
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus{
+      border-color:rgba(46,255,150,.36);
+      box-shadow:0 0 0 3px rgba(46,255,150,.08);
+    }
+    .field input::placeholder,
+    .field textarea::placeholder{color:#9fc6b0}
+    .res-note{
+      margin:4px 0 0;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:.92rem;
+    }
+    .res-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:6px;
+    }
+    .res-status{
+      margin-top:8px;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(46,255,150,.12);
+      background:rgba(255,255,255,.03);
+      font-weight:700;
+      line-height:1.55;
+      color:#eafff2;
+    }
+    .res-status.ok{
+      border-color:rgba(46,255,150,.26);
+      background:rgba(46,255,150,.08);
+    }
+    .res-status.err{
+      border-color:rgba(255,110,110,.26);
+      background:rgba(255,90,90,.08);
+      color:#ffdada;
+    }
+    .res-status.warn{
+      border-color:rgba(255,196,110,.28);
+      background:rgba(255,196,110,.08);
+      color:#ffe9bf;
+    }
+    .res-status.info{
+      border-color:rgba(120,200,255,.26);
+      background:rgba(120,200,255,.08);
+      color:#dff5ff;
+    }
+
+    .slot-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .slot-head h3{margin:0;font-size:1.06rem}
+    .slots{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+    .slot{
+      min-height:58px;
+      border-radius:18px;
+      border:1px solid rgba(46,255,150,.12);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+      padding:10px 8px;
+    }
+    .slot:hover{
+      transform:translateY(-2px);
+      border-color:rgba(46,255,150,.30);
+    }
+    .slot.free{background:rgba(46,255,150,.08)}
+    .slot.busy{
+      background:rgba(255,165,70,.10);
+      border-color:rgba(255,165,70,.22);
+      color:#ffd7a6;
+    }
+    .slot.active{
+      border-color:rgba(46,255,150,.42);
+      box-shadow:0 0 0 3px rgba(46,255,150,.10);
+    }
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .legend span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:.88rem;
+      color:var(--muted);
+    }
+    .legend i{
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      display:inline-block;
+    }
+    .i-free{background:rgba(46,255,150,.55)}
+    .i-busy{background:rgba(255,165,70,.65)}
+    .mini-list{display:grid;gap:12px;margin-top:16px}
+    .mini-item{
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(46,255,150,.10);
+      background:rgba(255,255,255,.02);
+    }
+    .mini-item strong{display:block;margin-bottom:5px}
+    .mini-item span{
+      display:block;
+      color:var(--muted);
+      font-size:.92rem;
+      line-height:1.55;
+    }
+
+    .status-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+    .status-card{
+      padding:16px;
+      border-radius:20px;
+      border:1px solid rgba(46,255,150,.10);
+      background:rgba(255,255,255,.02);
+    }
+    .status-card h4{
+      margin:0 0 8px;
+      font-size:1rem;
+    }
+    .status-pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:36px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:.86rem;
+      font-weight:800;
+      letter-spacing:.2px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .pill-pending{background:rgba(255,196,110,.12); color:#ffe6b2; border-color:rgba(255,196,110,.24)}
+    .pill-confirmed{background:rgba(46,255,150,.12); color:#dfffea; border-color:rgba(46,255,150,.26)}
+    .pill-cancelled{background:rgba(255,110,110,.12); color:#ffdada; border-color:rgba(255,110,110,.24)}
+    .pill-completed{background:rgba(120,200,255,.12); color:#def5ff; border-color:rgba(120,200,255,.24)}
+
+    .result-box{
+      margin-top:12px;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(46,255,150,.12);
+      background:rgba(255,255,255,.03);
+      line-height:1.65;
+    }
+    .result-box.empty{
+      color:var(--muted);
+    }
+    .code-box{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:8px;
+      padding:9px 12px;
+      border-radius:12px;
+      background:rgba(46,255,150,.08);
+      border:1px solid rgba(46,255,150,.18);
+      font-weight:800;
+      color:#eafff2;
+      word-break:break-all;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+      margin-top:18px;
+    }
+    .g{
+      position:relative;
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid rgba(46,255,150,.10);
+      box-shadow:var(--shadow);
+      min-height:220px;
+      background:linear-gradient(145deg,#0c1812,#102118);
+    }
+    .g img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.86;
+      transition:.28s ease;
+    }
+    .g:hover img{transform:scale(1.05);opacity:.96}
+    .g.large{grid-column:span 7;min-height:340px}
+    .g.small{grid-column:span 5;min-height:340px}
+    .g .tag{
+      position:absolute;
+      top:16px;right:16px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(46,255,150,.16);
+      background:rgba(46,255,150,.10);
+      font-size:.82rem;
+      font-weight:800;
+      z-index:2;
+    }
+    .g .label{
+      position:absolute;
+      left:16px;right:16px;bottom:14px;
+      z-index:2;
+    }
+    .g .label h3{margin:0 0 6px;font-size:1.02rem}
+    .g .label p{margin:0;color:#dcf9e8;font-size:.92rem;line-height:1.5}
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+    }
+    .info{
+      padding:20px;
+      border-radius:22px;
+      border:1px solid rgba(46,255,150,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow:var(--shadow);
+    }
+    .info h3{margin:0 0 8px;font-size:1.04rem}
+    .info p{margin:0;color:var(--muted);line-height:1.65}
+
+    .contact-list{
+      display:grid;
+      gap:12px;
+      margin-top:18px;
+    }
+    .contact-item{
+      display:grid;
+      grid-template-columns:44px 1fr;
+      gap:12px;
+      align-items:start;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(46,255,150,.10);
+      background:rgba(255,255,255,.02);
+    }
+    .contact-icon{
+      width:44px;height:44px;
+      display:grid;place-items:center;
+      border-radius:14px;
+      background:rgba(46,255,150,.10);
+      border:1px solid rgba(46,255,150,.16);
+      font-weight:900;
+    }
+    .contact-item strong{display:block;margin-bottom:4px}
+    .contact-item span{color:var(--muted);line-height:1.6}
+    .map{
+      overflow:hidden;
+      min-height:500px;
+      border-radius:28px;
+      border:1px solid rgba(46,255,150,.10);
+      box-shadow:var(--shadow);
+    }
+    .map iframe{width:100%;min-height:500px;border:0}
+
+    .cta-card{
+      padding:30px 26px;
+      border-radius:32px;
+      border:1px solid rgba(46,255,150,.14);
+      background:
+        radial-gradient(circle at top right, rgba(46,255,150,.14), transparent 22%),
+        linear-gradient(135deg, rgba(8,17,12,.96), rgba(10,24,16,.96));
+      box-shadow:var(--shadow);
+    }
+    .cta-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:20px;
+      align-items:center;
+    }
+    .cta-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:flex-end;
+    }
+
+    footer{
+      margin-top:12px;
+      border-top:1px solid rgba(46,255,150,.10);
+      background:rgba(2,4,3,.92);
+    }
+    .footer-grid{
+      padding:26px 0 34px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr .9fr;
+      gap:20px;
+    }
+    .footer-card{
+      padding:22px;
+      border-radius:24px;
+      border:1px solid rgba(46,255,150,.10);
+      background:rgba(255,255,255,.02);
+    }
+    .footer-card h3{margin:0 0 10px;font-size:1.05rem}
+    .footer-card p,
+    .footer-card li{
+      margin:0;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:.95rem;
+    }
+    .footer-card ul{
+      margin:0;
+      padding-left:18px;
+      display:grid;
+      gap:8px;
+    }
+    .copy{
+      text-align:center;
+      color:#9ec5b0;
+      font-size:.9rem;
+      padding:0 0 26px;
+    }
+
+    .float{
+      position:fixed;
+      right:14px;
+      bottom:14px;
+      display:grid;
+      gap:10px;
+      z-index:999;
+    }
+    .float a{
+      width:58px;height:58px;
+      display:grid;place-items:center;
+      border-radius:18px;
+      background:linear-gradient(180deg,#0f1f16,#08120d);
+      border:1px solid rgba(46,255,150,.16);
+      box-shadow:0 14px 30px rgba(0,0,0,.36),0 0 24px rgba(46,255,150,.10);
+      color:#fff;
+      font-weight:900;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(20px);
+      transition:opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,.grid-2,.res-wrap,.cta-grid{grid-template-columns:1fr}
+      .hero-card{margin-left:0}
+      .info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .cta-actions{justify-content:flex-start}
+      .status-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 900px){
+      nav{display:none}
+      .mobile-btn{display:block}
+      .hero-mini,.info-grid,.slots,.res-grid-2,.res-grid-3{grid-template-columns:1fr}
+      .g.large,.g.small{grid-column:span 12}
+      .footer-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      :root{--header:74px}
+      .container{width:min(var(--max),calc(100% - 18px))}
+      .section{padding:34px 0}
+      .hero{min-height:auto;align-items:flex-end}
+      .hero-bg{
+        background:
+          linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.76)),
+          linear-gradient(180deg, rgba(2,4,3,.24), rgba(2,4,3,.88) 78%),
+          url("./bilijar.jpg") center center / cover no-repeat;
+      }
+      .hero-grid{padding:92px 0 24px;gap:18px}
+      .hero-title{font-size:2.2rem;line-height:1.02;margin:16px 0 12px}
+      .hero-sub{font-size:1rem;line-height:1.5}
+      .hero-desc{font-size:.96rem;line-height:1.65}
+      .hero-badge{font-size:.78rem;padding:9px 12px}
+      .hero-actions{display:grid;grid-template-columns:1fr}
+      .btn{width:100%;min-height:52px}
+      .hero-card,.res-card,.pad,.cta-card{padding:20px 16px;border-radius:22px}
+      .hero-stat{grid-template-columns:54px 1fr;gap:12px;padding:12px}
+      .hero-stat-icon{width:54px;height:54px;border-radius:14px;font-size:1rem}
+      .scene{min-height:440px;background-position:center center}
+      .scene-content{left:16px;right:16px;bottom:16px}
+      .map,.map iframe{min-height:380px}
+      .float a{width:52px;height:52px}
+      .brand-mark{width:46px;height:46px;font-size:1.2rem}
+      .brand-text h1{font-size:.92rem}
+      .brand-text p{font-size:.78rem}
+      .section-title{font-size:1.85rem}
+      .section-desc{font-size:.96rem}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SportsActivityLocation",
+    "name":"ZEN BILIJAR KUĆICA",
+    "description":"Bilijar klub i caffe bar u Beogradu sa dva kvalitetna stola, pikadom i brzim rezervacijama.",
+    "telephone":"+381642637342",
+    "email":"drlazarevicbg@gmail.com",
+    "url":"https://zenbilijar.netlify.app/",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Beograd",
+      "streetAddress":"Vučićev prolaz, preko puta Cvetkove pijace",
+      "addressCountry":"RS"
+    },
+    "sameAs":[
+      "https://www.instagram.com/zen.bilijar.kucica/"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-wrap">
+      <a href="#top" class="brand">
+        <div class="brand-mark">8</div>
+        <div class="brand-text">
+          <h1>ZEN BILIJAR KUĆICA</h1>
+          <p>Bilijar klub • caffe bar • Beograd</p>
+        </div>
+      </a>
+
+      <nav>
+        <a class="nav-link" href="#o-klubu">O klubu</a>
+        <a class="nav-link" href="#rezervacije">Rezervacije</a>
+        <a class="nav-link" href="#status-rezervacije">Status</a>
+        <a class="nav-link" href="#scena">Atmosfera</a>
+        <a class="nav-link" href="#galerija">Galerija</a>
+        <a class="nav-link" href="#lokacija">Lokacija</a>
+      </nav>
+
+      <button class="mobile-btn" id="menuBtn" type="button" aria-label="Meni">☰</button>
+    </div>
+
+    <div class="container mobile-menu" id="mobileMenu">
+      <div class="mobile-panel">
+        <div class="mobile-links">
+          <a href="#o-klubu">O klubu</a>
+          <a href="#rezervacije">Rezervacije</a>
+          <a href="#status-rezervacije">Status rezervacije</a>
+          <a href="#scena">Atmosfera</a>
+          <a href="#galerija">Galerija</a>
+          <a href="#lokacija">Lokacija</a>
+          <a href="tel:+381642637342">Pozovi odmah</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="hero-badge">BEOGRAD • PREKO PUTA CVETKOVE PIJACE</div>
+
+        <h2 class="hero-title">
+          <span class="glow">ZEN BILIJAR KUĆICA</span>
+        </h2>
+
+        <p class="hero-sub">
+          Sport, noćna atmosfera i pravi bilijar na jednom mestu.
+        </p>
+
+        <p class="hero-desc">
+          Dva kvalitetna stola, pikado, dobra ekipa, jaka atmosfera i brze rezervacije.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#rezervacije">Rezerviši termin</a>
+          <a class="btn btn-secondary" href="#status-rezervacije">Proveri status</a>
+          <a class="btn btn-outline" href="tel:+381642637342">Pozovi odmah</a>
+          <a class="btn btn-outline" href="viber://chat?number=%2B381642637342">Viber</a>
+        </div>
+
+        <div class="hero-mini">
+          <div class="mini-box">
+            <strong>2 stola</strong>
+            <span>Visok kvalitet igre za rekreativce i ozbiljnije igrače.</span>
+          </div>
+          <div class="mini-box">
+            <strong>Pikado</strong>
+            <span>Dodatni sadržaj za društvo, opuštanje i noćni provod.</span>
+          </div>
+          <div class="mini-box">
+            <strong>Brz kontakt</strong>
+            <span>Poziv, Viber, WhatsApp i rezervacija preko sajta.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="hero-card">
+          <h3 class="hero-card-title">Zašto da rezervišeš ovde</h3>
+
+          <div class="hero-stat">
+            <div class="hero-stat-icon">🎱</div>
+            <div>
+              <h3>Pravi bilijar ambijent</h3>
+              <p>Dva kvalitetna stola i atmosfera koja pravi razliku već pri ulasku.</p>
+            </div>
+          </div>
+
+          <div class="hero-stat">
+            <div class="hero-stat-icon">📅</div>
+            <div>
+              <h3>Brza prijava termina</h3>
+              <p>Pošalji zahtev za termin za nekoliko sekundi i sačuvaj svoju šifru rezervacije.</p>
+            </div>
+          </div>
+
+          <div class="hero-stat">
+            <div class="hero-stat-icon">📲</div>
+            <div>
+              <h3>Više načina kontakta</h3>
+              <p>Ako želiš, možeš odmah nastaviti i preko WhatsApp-a, Vibera ili poziva.</p>
+            </div>
+          </div>
+
+          <div class="hero-stat">
+            <div class="hero-stat-icon">🌙</div>
+            <div>
+              <h3>Noćni karakter kluba</h3>
+              <p>Tamna, jaka i klupska atmosfera za ozbiljniju partiju i dobar izlazak.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="o-klubu">
+    <div class="container">
+      <span class="section-kicker reveal">O klubu</span>
+      <h2 class="section-title reveal">Bilijar klub sa atmosferom, stilom i razlogom da se vratiš.</h2>
+      <p class="section-desc reveal">
+        ZEN BILIJAR KUĆICA nije običan lokal. To je mesto za ozbiljniju partiju, opušten izlazak, muziku, dobar razgovor i noćni sportski ambijent koji ostavlja utisak već pri prvom ulasku.
+      </p>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <div class="panel pad reveal">
+          <div class="stack">
+            <div class="stack-card">
+              <h3>Dva kvalitetna stola</h3>
+              <p>Pravi osećaj igre za rekreativce i ozbiljnije igrače koji vole bilijar, a ne samo usputno zadržavanje.</p>
+            </div>
+            <div class="stack-card">
+              <h3>Noćni karakter</h3>
+              <p>Tamna, jaka i klupska atmosfera daje prostoru identitet koji se pamti i na sajtu i uživo.</p>
+            </div>
+            <div class="stack-card">
+              <h3>Bilijar + pikado</h3>
+              <p>Dobra kombinacija za ekipu, takmičarski duh i provod koji može da traje dugo u noć.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel pad reveal">
+          <div class="stack">
+            <div class="stack-card">
+              <h3>Brz kontakt</h3>
+              <p>Poziv, WhatsApp, Viber i email — sve je spremno za brz dogovor termina bez komplikacije.</p>
+            </div>
+            <div class="stack-card">
+              <h3>Jedan jak fajl</h3>
+              <p>Sajt je spakovan u jedan index.html da ostane pregledan, stabilan i lak za objavu.</p>
+            </div>
+            <div class="stack-card">
+              <h3>Provera rezervacije</h3>
+              <p>Možeš proveriti status po telefonu ili po šifri, bez lažnog lokalnog prikaza statusa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="rezervacije">
+    <div class="container">
+      <span class="section-kicker reveal">Rezervacije</span>
+      <h2 class="section-title reveal">Pošalji zahtev za rezervaciju i sačuvaj svoju šifru.</h2>
+      <p class="section-desc reveal">
+        Popuni formu, izaberi datum i termin, pa pošalji zahtev. Nakon slanja dobijaš šifru rezervacije koju možeš kasnije iskoristiti za proveru statusa.
+      </p>
+
+      <div class="res-wrap">
+        <div class="res-card reveal">
+          <form class="res-form" id="reservationForm">
+            <div class="res-grid-2">
+              <div class="field">
+                <label for="resName">Ime i prezime</label>
+                <input id="resName" type="text" placeholder="Upiši ime i prezime" required />
+              </div>
+              <div class="field">
+                <label for="resPhone">Telefon</label>
+                <input id="resPhone" type="tel" placeholder="Na primer 0641234567" required />
+              </div>
+            </div>
+
+            <div class="res-grid-3">
+              <div class="field">
+                <label for="resDate">Datum</label>
+                <input id="resDate" type="date" required />
+              </div>
+              <div class="field">
+                <label for="resTime">Termin</label>
+                <input id="resTime" type="text" placeholder="Izaberi termin desno" readonly required />
+              </div>
+              <div class="field">
+                <label for="resTable">Sto</label>
+                <select id="resTable">
+                  <option value="Prvi sto">Prvi sto</option>
+                  <option value="Drugi sto">Drugi sto</option>
+                  <option value="Prvi slobodan sto">Prvi slobodan sto</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="res-grid-3">
+              <div class="field">
+                <label for="resPeople">Broj osoba</label>
+                <select id="resPeople">
+                  <option value="1-2">1-2 osobe</option>
+                  <option value="3-4">3-4 osobe</option>
+                  <option value="5+">5+ osoba</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="resType">Vrsta dolaska</label>
+                <select id="resType">
+                  <option value="Bilijar">Bilijar</option>
+                  <option value="Pikado">Pikado</option>
+                  <option value="Bilijar + pikado">Bilijar + pikado</option>
+                  <option value="Čas bilijara">Čas bilijara</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="resDuration">Trajanje</label>
+                <select id="resDuration">
+                  <option value="1 sat">1 sat</option>
+                  <option value="1.5 sata">1.5 sata</option>
+                  <option value="2 sata">2 sata</option>
+                  <option value="Duže">Duže</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="resNote">Napomena</label>
+              <textarea id="resNote" placeholder="Unesi dodatnu poruku, pitanje ili željeni detalj..."></textarea>
+            </div>
+
+            <p class="res-note">
+              Klub ima 2 stola. Ako je izabran „Prvi slobodan sto“, klub će dodeliti slobodan sto pri potvrdi. Posle slanja sačuvaj šifru rezervacije.
+            </p>
+
+            <div class="res-actions">
+              <button type="submit" class="btn btn-primary">Pošalji zahtev</button>
+              <button type="button" class="btn btn-secondary" id="sendWhatsApp">WhatsApp</button>
+              <button type="button" class="btn btn-secondary" id="sendViber">Viber</button>
+              <button type="button" class="btn btn-outline" id="copyReservation">Kopiraj zahtev</button>
+            </div>
+
+            <div class="res-status info" id="resStatus">
+              Izaberi datum i termin, pa pošalji zahtev.
+            </div>
+
+            <div class="result-box empty" id="submitResult">
+              Ovde će se pojaviti šifra rezervacije i osnovna potvrda nakon slanja.
+            </div>
+          </form>
+        </div>
+
+        <div class="res-card reveal">
+          <div class="slot-head">
+            <h3>Dostupni termini</h3>
+            <div class="field" style="margin:0; min-width:220px;">
+              <label for="slotDateMirror">Datum za pregled</label>
+              <input id="slotDateMirror" type="date" />
+            </div>
+          </div>
+
+          <div class="slots" id="slotsWrap"></div>
+
+          <div class="legend">
+            <span><i class="i-free"></i> Slobodno</span>
+            <span><i class="i-busy"></i> Popularan termin</span>
+          </div>
+
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Kako radi</strong>
+              <span>Odaberi datum, klikni na termin i forma se automatski popunjava.</span>
+            </div>
+            <div class="mini-item">
+              <strong>2 stola</strong>
+              <span>Za isti termin mogu postojati najviše dve potvrđene rezervacije — po jedna za svaki sto.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Kontakt za brzi dogovor</strong>
+              <span>Telefon: 064 263 7342 • Email: drlazarevicbg@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="status-rezervacije">
+    <div class="container">
+      <span class="section-kicker reveal">Status rezervacije</span>
+      <h2 class="section-title reveal">Proveri da li je tvoj termin potvrđen.</h2>
+      <p class="section-desc reveal">
+        Najsigurnije je da uneseš telefon koji je korišćen pri prijavi. Možeš uneti i šifru rezervacije ako je imaš.
+      </p>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <div class="panel pad reveal">
+          <div class="res-form">
+            <div class="res-grid-2">
+              <div class="field">
+                <label for="lookupCode">Šifra rezervacije</label>
+                <input id="lookupCode" type="text" placeholder="Na primer ZEN-20260310-AB12" />
+              </div>
+              <div class="field">
+                <label for="lookupPhone">Telefon</label>
+                <input id="lookupPhone" type="tel" placeholder="Na primer 0641234567" />
+              </div>
+            </div>
+
+            <div class="res-actions">
+              <button type="button" class="btn btn-primary" id="lookupBtn">Proveri status</button>
+              <button type="button" class="btn btn-outline" id="loadLatestBtn">Prikaži poslednji poslati zahtev sa ovog uređaja</button>
+            </div>
+
+            <div class="res-status info" id="lookupStatus">
+              Unesi telefon ili šifru, pa klikni na proveru.
+            </div>
+
+            <div class="result-box empty" id="lookupResult">
+              Ovde će se pojaviti detalji rezervacije i njen status.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel pad reveal">
+          <div class="status-grid">
+            <div class="status-card">
+              <h4>Na čekanju</h4>
+              <div class="status-pill pill-pending">⏳ Na čekanju</div>
+              <p class="section-desc" style="margin-top:10px;">Zahtev je poslat i čeka potvrdu kluba.</p>
+            </div>
+
+            <div class="status-card">
+              <h4>Potvrđeno</h4>
+              <div class="status-pill pill-confirmed">✅ Potvrđeno</div>
+              <p class="section-desc" style="margin-top:10px;">Termin je prihvaćen i rezervacija važi.</p>
+            </div>
+
+            <div class="status-card">
+              <h4>Odbijeno / Otkazano</h4>
+              <div class="status-pill pill-cancelled">❌ Odbijeno</div>
+              <p class="section-desc" style="margin-top:10px;">Termin nije prihvaćen ili je naknadno otkazan.</p>
+            </div>
+
+            <div class="status-card">
+              <h4>Završeno</h4>
+              <div class="status-pill pill-completed">🎱 Završeno</div>
+              <p class="section-desc" style="margin-top:10px;">Rezervacija je realizovana i odigrana.</p>
+            </div>
+          </div>
+
+          <div class="mini-list">
+            <div class="mini-item">
+              <strong>Najsigurnija provera</strong>
+              <span>Telefon je glavni ključ za proveru, jer ga sistem skoro uvek ima u tabeli.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Bez lažnog statusa</strong>
+              <span>Ova verzija više ne prikazuje „lokalno sačuvan status“ kao da je zvaničan status iz sistema.</span>
+            </div>
+            <div class="mini-item">
+              <strong>Za brzu potvrdu</strong>
+              <span>Ako je hitno, pošalji i poruku preko Vibera ili WhatsApp-a uz svoje ime, telefon i termin.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="scena">
+    <div class="container">
+      <span class="section-kicker reveal">Atmosfera kluba</span>
+      <h2 class="section-title reveal">Druga slika ostaje i nosi pravi ambijent prostora.</h2>
+      <p class="section-desc reveal">
+        Ova scena iz kluba je zadržana da sajt ne izgubi karakter. Hero slika ostaje za prvi utisak, a ova druga daje realan osećaj prostora i noćne atmosfere.
+      </p>
+
+      <div class="scene reveal">
+        <div class="scene-content">
+          <div class="scene-badge">PRAVI AMBIJENT KLUBA</div>
+          <h3>Svetlo iznad stola, tamna atmosfera i prostor za ozbiljnu partiju.</h3>
+          <p>
+            Ova fotografija čuva identitet kluba i daje sajtu dodatnu težinu. Upravo zato je ostavljena u ovoj verziji kao jedna od glavnih vizuelnih tačaka.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="galerija">
+    <div class="container">
+      <span class="section-kicker reveal">Galerija</span>
+      <h2 class="section-title reveal">Dve glavne scene koje nose ceo utisak sajta.</h2>
+      <p class="section-desc reveal">
+        Sajt je namerno sačuvao dve najvažnije slike da zadrži ozbiljan i upečatljiv vizuelni identitet.
+      </p>
+
+      <div class="gallery-grid">
+        <div class="g large reveal">
+          <img src="./bilijar.jpg" alt="ZEN BILIJAR KUĆICA hero scena" />
+          <div class="tag">Hero kadar</div>
+          <div class="label">
+            <h3>Glavna scena sajta</h3>
+            <p>Moćan prvi utisak i vizuelni potpis ZEN BILIJAR KUĆICE.</p>
+          </div>
+        </div>
+
+        <div class="g small reveal">
+          <img src="./scena-kluba.jpg" alt="Atmosfera kluba ZEN BILIJAR KUĆICA" />
+          <div class="tag">Ambijent</div>
+          <div class="label">
+            <h3>Prava unutrašnja atmosfera</h3>
+            <p>Druga slika daje realan osećaj prostora i zadržava karakter kluba.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info reveal">
+          <h3>Radno vreme</h3>
+          <p>Klub se obično otvara oko 17h i radi do kasno. Za siguran dolazak i termin — pozvati.</p>
+        </div>
+        <div class="info reveal">
+          <h3>Cene</h3>
+          <p>Cene su na upit. Najbrže informacije dobijaš direktnim pozivom ili porukom.</p>
+        </div>
+        <div class="info reveal">
+          <h3>Rezervacije</h3>
+          <p>Moguće putem sajta, pozivom, SMS porukom, preko Vibera ili WhatsApp-a.</p>
+        </div>
+        <div class="info reveal">
+          <h3>Instagram</h3>
+          <p><a href="https://www.instagram.com/zen.bilijar.kucica/" target="_blank" rel="noopener">@zen.bilijar.kucica</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lokacija">
+    <div class="container">
+      <span class="section-kicker reveal">Lokacija i kontakt</span>
+      <h2 class="section-title reveal">Dođi lako, javi se brzo.</h2>
+      <p class="section-desc reveal">
+        ZEN BILIJAR KUĆICA se nalazi u Beogradu, u Vučićevom prolazu na kraju, preko puta Cvetkove pijace.
+      </p>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <div class="panel pad reveal">
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <strong>Adresa</strong>
+                <span>Beograd, Vučićev prolaz na kraju, preko puta Cvetkove pijace</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <strong>Telefon</strong>
+                <span><a href="tel:+381642637342">064 263 7342</a></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <strong>Email</strong>
+                <span><a href="mailto:drlazarevicbg@gmail.com">drlazarevicbg@gmail.com</a></span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">💬</div>
+              <div>
+                <strong>Poruke</strong>
+                <span>SMS, Viber i WhatsApp za brzu rezervaciju i informacije</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📸</div>
+              <div>
+                <strong>Instagram</strong>
+                <span><a href="https://www.instagram.com/zen.bilijar.kucica/" target="_blank" rel="noopener">@zen.bilijar.kucica</a></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-actions" style="margin-top:22px;">
+            <a class="btn btn-primary" href="tel:+381642637342">Pozovi odmah</a>
+            <a class="btn btn-secondary" href="https://wa.me/381642637342" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn btn-outline" href="viber://chat?number=%2B381642637342">Viber</a>
+          </div>
+        </div>
+
+        <div class="map reveal">
+          <iframe
+            title="Mapa lokacije ZEN BILIJAR KUĆICA"
+            src="https://www.google.com/maps?q=Cvetkova%20pijaca%2C%20Beograd&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-card reveal">
+        <div class="cta-grid">
+          <div>
+            <span class="section-kicker">Rezervacija</span>
+            <h2 class="section-title">Rezerviši sto ili proveri status odmah.</h2>
+            <p class="section-desc" style="max-width:720px;">
+              Ako želiš ozbiljan bilijar u Beogradu uz dobar ambijent, pošalji zahtev i sačuvaj svoju šifru rezervacije. Status možeš proveriti kad god želiš.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="#rezervacije">Rezerviši</a>
+            <a class="btn btn-secondary" href="#status-rezervacije">Status</a>
+            <a class="btn btn-secondary" href="sms:+381642637342">SMS</a>
+            <a class="btn btn-outline" href="mailto:drlazarevicbg@gmail.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-card">
+        <h3>ZEN BILIJAR KUĆICA</h3>
+        <p>
+          Bilijar klub i caffe bar u Beogradu, kod Cvetkove pijace. Dva kvalitetna stola, pikado, noćna atmosfera i rezervacije sa proverom statusa.
+        </p>
+      </div>
+
+      <div class="footer-card">
+        <h3>Brzi linkovi</h3>
+        <ul>
+          <li><a href="#o-klubu">O klubu</a></li>
+          <li><a href="#rezervacije">Rezervacije</a></li>
+          <li><a href="#status-rezervacije">Status rezervacije</a></li>
+          <li><a href="#scena">Atmosfera</a></li>
+          <li><a href="#galerija">Galerija</a></li>
+          <li><a href="#lokacija">Lokacija</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-card">
+        <h3>Kontakt</h3>
+        <ul>
+          <li><a href="tel:+381642637342">064 263 7342</a></li>
+          <li><a href="mailto:drlazarevicbg@gmail.com">drlazarevicbg@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/zen.bilijar.kucica/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://wa.me/381642637342" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="viber://chat?number=%2B381642637342">Viber</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copy">© ZEN BILIJAR KUĆICA — sva prava zadržana.</div>
+    </div>
+  </footer>
+
+  <div class="float">
+    <a href="tel:+381642637342" title="Pozovi">📞</a>
+    <a href="https://wa.me/381642637342" target="_blank" rel="noopener" title="WhatsApp">WA</a>
+    <a href="#rezervacije" title="Rezervacije">📅</a>
+  </div>
+
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyukXUq9oUwI8ZfjcGtPFrv4JnqCScdNHPBzbmQijwNuLOdBjz89-YQxrXagiEZaWw00g/exec";
+
+    const PHONE_E164 = "381642637342";
+    const CLUB_EMAIL = "drlazarevicbg@gmail.com";
+    const STORAGE_KEY = "zen_reservations_v4";
+    const LAST_RES_KEY = "zen_last_reservation_code_v4";
+
+    const TABLE_OPTIONS = ["Prvi sto", "Drugi sto"];
+    const TIME_SLOTS = ["17:00", "18:30", "20:00", "21:30", "23:00", "00:30"];
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    if(menuBtn){
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+      });
+    }
+
+    document.querySelectorAll(".mobile-links a").forEach(link => {
+      link.addEventListener("click", () => mobileMenu.classList.remove("open"));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    const resDate = document.getElementById("resDate");
+    const slotDateMirror = document.getElementById("slotDateMirror");
+    const resTime = document.getElementById("resTime");
+    const slotsWrap = document.getElementById("slotsWrap");
+    const resStatus = document.getElementById("resStatus");
+    const submitResult = document.getElementById("submitResult");
+    const reservationForm = document.getElementById("reservationForm");
+
+    const lookupCode = document.getElementById("lookupCode");
+    const lookupPhone = document.getElementById("lookupPhone");
+    const lookupBtn = document.getElementById("lookupBtn");
+    const loadLatestBtn = document.getElementById("loadLatestBtn");
+    const lookupStatus = document.getElementById("lookupStatus");
+    const lookupResult = document.getElementById("lookupResult");
+
+    const sendWhatsAppBtn = document.getElementById("sendWhatsApp");
+    const sendViberBtn = document.getElementById("sendViber");
+    const copyReservationBtn = document.getElementById("copyReservation");
+
+    resDate.min = todayStr;
+    slotDateMirror.min = todayStr;
+    resDate.value = todayStr;
+    slotDateMirror.value = todayStr;
+
+    function normalizePhone(phone){
+      let value = String(phone || "").trim();
+      value = value.replace(/[^\d+]/g, "");
+
+      if(value.startsWith("+381")) return "0" + value.slice(4);
+      if(value.startsWith("381")) return "0" + value.slice(3);
+      return value;
+    }
+
+    function escapeHtml(str){
+      return String(str || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function statusClassName(status){
+      const s = String(status || "").toLowerCase();
+      if(s.includes("potvr")) return "pill-confirmed";
+      if(s.includes("odbij") || s.includes("otkaz")) return "pill-cancelled";
+      if(s.includes("zavr")) return "pill-completed";
+      return "pill-pending";
+    }
+
+    function normalizeStatus(status){
+      const s = String(status || "").trim().toLowerCase();
+      if(s.includes("potvr")) return "Potvrđeno";
+      if(s.includes("odbij")) return "Odbijeno";
+      if(s.includes("otkaz")) return "Otkazano";
+      if(s.includes("zavr")) return "Završeno";
+      return "Na čekanju";
+    }
+
+    function generateReservationCode(dateValue){
+      const d = String(dateValue || todayStr).replaceAll("-", "");
+      const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+      return `ZEN-${d}-${rand}`;
+    }
+
+    function getReservations(){
+      try{
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      }catch{
+        return [];
+      }
+    }
+
+    function saveReservations(list){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    function saveLocalReservation(record){
+      const all = getReservations().filter(item => item.code !== record.code);
+      all.unshift(record);
+      saveReservations(all);
+      localStorage.setItem(LAST_RES_KEY, record.code);
+    }
+
+    function getLatestReservation(){
+      const code = localStorage.getItem(LAST_RES_KEY);
+      if(!code) return null;
+      return getReservations().find(item => item.code === code) || null;
+    }
+
+    function setResStatus(message, type){
+      resStatus.className = `res-status ${type || "info"}`;
+      resStatus.textContent = message;
+    }
+
+    function setLookupStatus(message, type){
+      lookupStatus.className = `res-status ${type || "info"}`;
+      lookupStatus.textContent = message;
+    }
+
+    function syncDates(from, to){
+      to.value = from.value;
+      if(resDate.value !== slotDateMirror.value){
+        resTime.value = "";
+        document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
+      }
+      setResStatus("Datum je promenjen. Izaberi termin.", "info");
+    }
+
+    resDate.addEventListener("change", () => syncDates(resDate, slotDateMirror));
+    slotDateMirror.addEventListener("change", () => syncDates(slotDateMirror, resDate));
+
+    function renderSlots(){
+      slotsWrap.innerHTML = "";
+
+      TIME_SLOTS.forEach((time, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `slot ${index === 2 || index === 4 ? "busy" : "free"}`;
+        btn.textContent = time;
+
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
+          btn.classList.add("active");
+          resTime.value = time;
+          setResStatus(`Izabran termin: ${time} za datum ${slotDateMirror.value}. Sada možeš poslati zahtev.`, "ok");
+        });
+
+        slotsWrap.appendChild(btn);
+      });
+    }
+
+    renderSlots();
+
+    function validateReservationInput(data){
+      if(!data.name || data.name.length < 2){
+        return "Upiši ime i prezime.";
+      }
+
+      if(!data.phone || !/^0\d{8,10}$/.test(data.phone)){
+        return "Upiši ispravan broj telefona.";
+      }
+
+      if(!data.date){
+        return "Izaberi datum.";
+      }
+
+      if(data.date < todayStr){
+        return "Datum ne može biti u prošlosti.";
+      }
+
+      if(!data.time){
+        return "Izaberi termin.";
+      }
+
+      if(!TIME_SLOTS.includes(data.time)){
+        return "Izaberi termin iz ponuđenih polja.";
+      }
+
+      if(!data.table){
+        return "Izaberi sto.";
+      }
+
+      return "";
+    }
+
+    function buildReservationPayload(withCode = false){
+      const payload = {
+        code: withCode ? generateReservationCode(resDate.value.trim()) : "",
+        name: document.getElementById("resName").value.trim(),
+        phone: normalizePhone(document.getElementById("resPhone").value.trim()),
+        date: document.getElementById("resDate").value.trim(),
+        time: document.getElementById("resTime").value.trim(),
+        table: document.getElementById("resTable").value,
+        people: document.getElementById("resPeople").value,
+        type: document.getElementById("resType").value,
+        duration: document.getElementById("resDuration").value,
+        note: document.getElementById("resNote").value.trim(),
+        status: "Na čekanju",
+        createdAt: new Date().toISOString()
+      };
+
+      const validationError = validateReservationInput(payload);
+      if(validationError){
+        setResStatus(validationError, "err");
+        return null;
+      }
+
+      return payload;
+    }
+
+    function buildReservationText(record){
+      return `Zdravo, šaljem zahtev za rezervaciju u ZEN BILIJAR KUĆICI.
+
+Šifra rezervacije: ${record.code}
+Ime i prezime: ${record.name}
+Telefon: ${record.phone}
+Datum: ${record.date}
+Termin: ${record.time}
+Sto: ${record.table}
+Broj osoba: ${record.people}
+Vrsta dolaska: ${record.type}
+Trajanje: ${record.duration}
+Napomena: ${record.note || "Nema dodatne napomene"}
+
+Trenutni status: ${record.status}
+Molim potvrdu termina.`;
+    }
+
+    async function postToBackend(record){
+      if(!WEB_APP_URL){
+        return { ok:false, reason:"missing_url" };
+      }
+
+      const bodyData = {
+        action: "createReservation",
+        reservation: record
+      };
+
+      try{
+        const response = await fetch(WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(bodyData),
+          redirect: "follow"
+        });
+
+        const text = await response.text();
+        let parsed = null;
+
+        try{
+          parsed = JSON.parse(text);
+        }catch{
+          parsed = null;
+        }
+
+        if(response.ok){
+          return { ok:true, data:parsed || { raw:text } };
+        }
+
+        return { ok:false, reason:"http_error", status:response.status, raw:text };
+      }catch(error){
+        return { ok:false, reason:"network_error", error:error?.message || "Greška pri slanju" };
+      }
+    }
+
+    async function fetchStatusFromBackend(code, phone){
+      if(!WEB_APP_URL){
+        return { ok:false, reason:"missing_url" };
+      }
+
+      try{
+        const url = new URL(WEB_APP_URL);
+        if(phone) url.searchParams.set("telefon", phone);
+        if(code) url.searchParams.set("sifra", code);
+
+        const response = await fetch(url.toString(), { method: "GET", redirect: "follow" });
+        const text = await response.text();
+        let parsed = null;
+
+        try{
+          parsed = JSON.parse(text);
+        }catch{
+          parsed = null;
+        }
+
+        if(response.ok && parsed){
+          return { ok:true, data:parsed };
+        }
+
+        return { ok:false, reason:"invalid_backend_response", raw:text };
+      }catch(error){
+        return { ok:false, reason:"lookup_failed", error:error?.message || "Greška pri proveri statusa" };
+      }
+    }
+
+    function normalizeRecord(data){
+      return {
+        code: data.code || "",
+        name: data.name || data.ime || "",
+        phone: normalizePhone(data.phone || data.telefon || ""),
+        date: data.date || data.datum || "",
+        time: data.time || data.vreme || "",
+        table: data.table || data.sto || data["Šta želite da rezervišete"] || data.what || "",
+        people: data.people || data.osobe || "",
+        type: data.type || data.vrsta || "",
+        duration: data.duration || data.trajanje || "",
+        note: data.note || data.napomena || "",
+        status: normalizeStatus(data.status || data.STATUS || ""),
+        createdAt: data.createdAt || data.timestamp || new Date().toISOString()
+      };
+    }
+
+    function renderSubmitResult(record, backendOk){
+      submitResult.className = "result-box";
+      submitResult.innerHTML = `
+        <strong>Zahtev je pripremljen.</strong><br>
+        Šifra rezervacije:
+        <div class="code-box">${escapeHtml(record.code)}</div>
+        <div style="margin-top:10px;">
+          Datum: <strong>${escapeHtml(record.date)}</strong> • Termin: <strong>${escapeHtml(record.time)}</strong><br>
+          Sto: <strong>${escapeHtml(record.table)}</strong><br>
+          Status: <strong>${escapeHtml(record.status)}</strong><br>
+          ${backendOk
+            ? 'Zahtev je uspešno prosleđen sistemu kluba.'
+            : 'Zahtev nije pouzdano potvrđen od strane servera. Pošalji i preko WhatsApp-a, Vibera ili poziva.'}
+        </div>
+      `;
+    }
+
+    function renderLookupResult(record, isLocalOnly = false){
+      lookupResult.className = "result-box";
+      lookupResult.innerHTML = `
+        <strong>${isLocalOnly ? "Poslednji poslati zahtev sa ovog uređaja" : "Detalji rezervacije"}</strong><br><br>
+        Šifra: <strong>${escapeHtml(record.code || "-")}</strong><br>
+        Ime: <strong>${escapeHtml(record.name || "-")}</strong><br>
+        Telefon: <strong>${escapeHtml(record.phone || "-")}</strong><br>
+        Datum: <strong>${escapeHtml(record.date || "-")}</strong><br>
+        Termin: <strong>${escapeHtml(record.time || "-")}</strong><br>
+        Sto: <strong>${escapeHtml(record.table || "-")}</strong><br>
+        Broj osoba: <strong>${escapeHtml(record.people || "-")}</strong><br>
+        Vrsta dolaska: <strong>${escapeHtml(record.type || "-")}</strong><br>
+        Trajanje: <strong>${escapeHtml(record.duration || "-")}</strong><br>
+        Status:
+        <span class="status-pill ${statusClassName(record.status)}" style="margin-left:8px;">${escapeHtml(record.status || "Na čekanju")}</span>
+        <br><br>
+        Napomena: <strong>${escapeHtml(record.note || "Nema")}</strong>
+      `;
+    }
+
+    function tryFindLocalByPhoneOrCode(code, phone){
+      const all = getReservations();
+      const normalizedPhone = normalizePhone(phone);
+
+      if(code){
+        const foundByCode = all.find(item => String(item.code || "").trim().toUpperCase() === String(code).trim().toUpperCase());
+        if(foundByCode) return foundByCode;
+      }
+
+      if(normalizedPhone){
+        const foundByPhone = all.find(item => normalizePhone(item.phone) === normalizedPhone);
+        if(foundByPhone) return foundByPhone;
+      }
+
+      return null;
+    }
+
+    reservationForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const record = buildReservationPayload(true);
+      if(!record) return;
+
+      setResStatus("Slanje zahteva je u toku...", "info");
+      submitResult.className = "result-box empty";
+      submitResult.textContent = "Sačekaj trenutak...";
+
+      const localConflict = getReservations().find(item => {
+        const sameDate = item.date === record.date;
+        const sameTime = item.time === record.time;
+        const sameTable = item.table === record.table;
+        const activeStatus = !["Odbijeno", "Otkazano"].includes(normalizeStatus(item.status));
+        return sameDate && sameTime && sameTable && activeStatus;
+      });
+
+      if(record.table !== "Prvi slobodan sto" && localConflict){
+        setResStatus("Na ovom uređaju već postoji zahtev za isti datum, termin i sto. Izaberi drugi sto ili drugi termin.", "warn");
+      }
+
+      const backendResult = await postToBackend(record);
+
+      saveLocalReservation(record);
+
+      if(backendResult.ok){
+        setResStatus("Zahtev je uspešno poslat. Sačuvaj šifru rezervacije.", "ok");
+        renderSubmitResult(record, true);
+        reservationForm.reset();
+        resDate.value = todayStr;
+        slotDateMirror.value = todayStr;
+        resTime.value = "";
+        document.querySelectorAll(".slot").forEach(s => s.classList.remove("active"));
+      }else{
+        setResStatus("Server nije pouzdano potvrdio prijem. Sačuvaj šifru i pošalji i preko WhatsApp-a, Vibera ili poziva.", "warn");
+        renderSubmitResult(record, false);
+      }
+    });
+
+    lookupBtn.addEventListener("click", async () => {
+      const code = lookupCode.value.trim();
+      const phone = normalizePhone(lookupPhone.value.trim());
+
+      if(!code && !phone){
+        setLookupStatus("Unesi telefon ili šifru rezervacije.", "err");
+        lookupResult.className = "result-box empty";
+        lookupResult.textContent = "Nema podataka za proveru.";
+        return;
+      }
+
+      setLookupStatus("Provera statusa je u toku...", "info");
+      lookupResult.className = "result-box empty";
+      lookupResult.textContent = "Sačekaj trenutak...";
+
+      const backendResult = await fetchStatusFromBackend(code, phone);
+
+      if(backendResult.ok && backendResult.data){
+        const payload = backendResult.data;
+        const backendSaysNotFound = payload && payload.ok === false;
+        const raw = payload?.reservation || payload?.data || payload?.result || payload;
+        const hasReservationFields = !!(raw && (
+          raw.code || raw.sifra || raw.name || raw.ime || raw.phone || raw.telefon ||
+          raw.date || raw.datum || raw.time || raw.vreme || raw.table || raw.sto ||
+          raw.status || raw.STATUS
+        ));
+
+        if(!backendSaysNotFound && hasReservationFields){
+          const record = normalizeRecord(raw);
+          renderLookupResult(record, false);
+          setLookupStatus(`Status pronađen: ${record.status}`, "ok");
+          saveLocalReservation(record);
+          return;
+        }
+      }
+
+      const localDraft = tryFindLocalByPhoneOrCode(code, phone);
+      if(localDraft){
+        renderLookupResult(localDraft, true);
+        setLookupStatus("Server nije vratio rezultat. Prikazan je samo poslednji poslati zahtev sa ovog uređaja, ne i zvaničan status iz sistema.", "warn");
+        return;
+      }
+
+      lookupResult.className = "result-box empty";
+      lookupResult.textContent = "Rezervacija nije pronađena.";
+      setLookupStatus("Rezervacija nije pronađena. Proveri telefon ili kontaktiraj klub.", "err");
+    });
+
+    loadLatestBtn.addEventListener("click", () => {
+      const latest = getLatestReservation();
+      if(!latest){
+        setLookupStatus("Na ovom uređaju nema sačuvanog poslednjeg zahteva.", "err");
+        lookupResult.className = "result-box empty";
+        lookupResult.textContent = "Nema sačuvanog zahteva.";
+        return;
+      }
+
+      lookupCode.value = latest.code || "";
+      lookupPhone.value = latest.phone || "";
+      renderLookupResult(latest, true);
+      setLookupStatus("Prikazan je poslednji poslati zahtev sa ovog uređaja. Ovo nije automatski zvaničan status iz Google tabele.", "info");
+    });
+
+    sendWhatsAppBtn.addEventListener("click", () => {
+      const record = buildReservationPayload(true);
+      if(!record) return;
+
+      const text = buildReservationText(record);
+      const url = `https://wa.me/${PHONE_E164}?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank", "noopener");
+    });
+
+    sendViberBtn.addEventListener("click", () => {
+      const record = buildReservationPayload(true);
+      if(!record) return;
+
+      const text = buildReservationText(record);
+      const url = `viber://forward?text=${encodeURIComponent(text)}`;
+      window.location.href = url;
+    });
+
+    copyReservationBtn.addEventListener("click", async () => {
+      const record = buildReservationPayload(true);
+      if(!record) return;
+
+      const text = buildReservationText(record);
+
+      try{
+        await navigator.clipboard.writeText(text);
+        setResStatus("Tekst rezervacije je kopiran. Možeš ga poslati porukom.", "ok");
+      }catch{
+        setResStatus("Kopiranje nije uspelo. Ručno pošalji preko WhatsApp-a ili Vibera.", "warn");
+      }
+    });
+
+    setResStatus("Izaberi datum i termin, pa pošalji zahtev.", "info");
+    setLookupStatus("Unesi telefon ili šifru, pa klikni na proveru.", "info");
+  </script>
+</body>
+</html>
