@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ZEN BILIJAR KUĆICA | Админ панел</title>
+  <meta name="theme-color" content="#08131c">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell container">
+    <div class="admin-top">
+      <a href="index.html" class="btn btn-secondary">← Назад на сајт</a>
+      <h1>Админ панел</h1>
+    </div>
+
+    <section class="panel admin-login" id="adminLoginSection">
+      <h2>Пријава</h2>
+      <form id="adminLoginForm" class="form-grid compact-form">
+        <div class="full">
+          <label for="adminPassword">Лозинка</label>
+          <input id="adminPassword" type="password" required>
+        </div>
+        <div class="full">
+          <button type="submit" class="btn btn-primary btn-full">Уђи у панел</button>
+        </div>
+      </form>
+      <div id="adminLoginResult" class="result-box hidden"></div>
+    </section>
+
+    <section class="admin-panel hidden" id="adminPanelSection">
+      <div class="admin-toolbar panel">
+        <div>
+          <h2>Све резервације</h2>
+          <p id="adminModeNotice"></p>
+        </div>
+        <div class="toolbar-actions">
+          <input type="date" id="filterDate">
+          <select id="filterStatus">
+            <option value="">Сви статуси</option>
+            <option value="на чекању">На чекању</option>
+            <option value="потврђено">Потврђено</option>
+            <option value="одбијено">Одбијено</option>
+            <option value="отказано">Отказано</option>
+          </select>
+          <button class="btn btn-secondary" id="refreshAdmin">Освежи</button>
+          <button class="btn btn-danger" id="logoutAdmin">Излаз</button>
+        </div>
+      </div>
+
+      <div class="table-wrap panel">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Шифра</th>
+              <th>Име</th>
+              <th>Телефон</th>
+              <th>Датум</th>
+              <th>Време</th>
+              <th>Тип</th>
+              <th>Статус</th>
+              <th>Акције</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

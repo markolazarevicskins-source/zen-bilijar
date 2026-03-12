@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ZEN BILIJAR KUĆICA | Билијар, пикадо, резервације</title>
+  <meta name="description" content="ZEN BILIJAR KUĆICA — билијар, пикадо, ноћна атмосфера и брзе онлајн резервације.">
+  <meta name="theme-color" content="#08131c">
+  <meta property="og:title" content="ZEN BILIJAR KUĆICA">
+  <meta property="og:description" content="Билијар, пикадо, галерија и онлајн резервације.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hero-2.jpg">
+  <link rel="icon" href="assets/hero-1.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#pocetna">ZEN BILIJAR KUĆICA</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Мени">☰</button>
+      <nav class="nav" id="mainNav">
+        <a href="#rezervacije">Резервације</a>
+        <a href="#status">Статус</a>
+        <a href="#galerija">Галерија</a>
+        <a href="#kontakti">Контакти</a>
+        <a href="admin.html" class="nav-admin">Админ</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="pocetna">
+      <div class="hero-slides">
+        <div class="hero-slide active" style="background-image:url('assets/hero-1.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('assets/hero-2.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('assets/hero-3.jpg')"></div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <span class="eyebrow">БИЛИЈАР • ПИКАДО • НОЋНА АТМОСФЕРА</span>
+        <h1>ZEN BILIJAR KUĆICA</h1>
+        <p>Моћан ноћни амбијент, плави столови, добра екипа и брза онлајн резервација стола.</p>
+        <div class="hero-actions">
+          <a href="#rezervacije" class="btn btn-primary">Резервиши сто</a>
+          <a href="#galerija" class="btn btn-secondary">Погледај галерију</a>
+        </div>
+        <div class="hero-cards">
+          <div class="mini-card">
+            <strong>Радно време</strong>
+            <span id="workHoursText">Сваког дана 14:00–01:00</span>
+          </div>
+          <div class="mini-card">
+            <strong>Локација</strong>
+            <span id="locationText">Београд</span>
+          </div>
+          <div class="mini-card">
+            <strong>Контакт</strong>
+            <span id="phoneText">+381 64 2637342</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section class="section container intro-grid">
+        <div class="glass-card">
+          <h2>Место за игру и дружење</h2>
+          <p>Сајт је спреман за професионалан наступ клуба: прегледан почетни екран, галерија атмосфере, форма за резервације, провера статуса и одвојен админ панел.</p>
+        </div>
+        <div class="glass-card stats-grid">
+          <div><strong>Онлајн резервације</strong><span>Брзо слање захтева</span></div>
+          <div><strong>Статус захтева</strong><span>Провера по шифри</span></div>
+          <div><strong>Админ панел</strong><span>Потврда и отказивање</span></div>
+          <div><strong>Мобилно прилагођен</strong><span>Телефон и десктоп</span></div>
+        </div>
+      </section>
+
+      <section class="section container" id="rezervacije">
+        <div class="section-head"><span>РЕЗЕРВАЦИЈЕ</span><h2>Пошаљи захтев за термин</h2></div>
+        <div class="grid-2">
+          <div class="panel">
+            <form id="reservationForm" class="form-grid">
+              <div><label for="fullName">Име и презиме</label><input id="fullName" name="fullName" type="text" required></div>
+              <div><label for="phone">Телефон</label><input id="phone" name="phone" type="tel" required></div>
+              <div><label for="date">Датум</label><input id="date" name="date" type="date" required></div>
+              <div><label for="time">Време</label><select id="time" name="time" required><option value="">Изабери термин</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option><option>18:00</option><option>19:00</option><option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option><option>00:00</option></select></div>
+              <div><label for="players">Број особа</label><input id="players" name="players" type="number" min="1" max="20" value="2" required></div>
+              <div><label for="tableType">Тип</label><select id="tableType" name="tableType" required><option>Билијар</option><option>Пикадо</option><option>Билијар + пикадо</option></select></div>
+              <div class="full"><label for="note">Напомена</label><textarea id="note" name="note" rows="4" placeholder="Додатне информације"></textarea></div>
+              <div class="full form-actions"><button type="submit" class="btn btn-primary btn-full">Пошаљи резервацију</button></div>
+            </form>
+            <div id="reservationResult" class="result-box hidden"></div>
+          </div>
+          <div class="panel side-info">
+            <h3>Како ради</h3>
+            <ul><li>Гост шаље захтев преко сајта.</li><li>Систем генерише шифру резервације.</li><li>Админ у панелу потврђује, одбија или отказује термин.</li><li>Гост касније уноси шифру и види статус.</li></ul>
+            <div class="notice" id="modeNotice"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="status">
+        <div class="section-head"><span>СТАТУС</span><h2>Провери своју резервацију</h2></div>
+        <div class="panel narrow-panel">
+          <form id="statusForm" class="status-form">
+            <div><label for="statusCode">Шифра резервације</label><input id="statusCode" name="statusCode" type="text" placeholder="На пример ZEN-123456" required></div>
+            <div><label for="statusPhone">Телефон</label><input id="statusPhone" name="statusPhone" type="tel" placeholder="Број телефона" required></div>
+            <div class="status-btn-wrap"><button type="submit" class="btn btn-secondary btn-full">Провери статус</button></div>
+          </form>
+          <div id="statusResult" class="result-box hidden"></div>
+        </div>
+      </section>
+
+      <section class="section container" id="galerija">
+        <div class="section-head"><span>ГАЛЕРИЈА</span><h2>Атмосфера клуба</h2></div>
+        <div class="gallery-grid">
+          <button class="gallery-item" data-image="assets/hero-1.jpg"><img src="assets/hero-1.jpg" alt="ZEN Bilijar atmosfera 1"></button>
+          <button class="gallery-item" data-image="assets/hero-2.jpg"><img src="assets/hero-2.jpg" alt="ZEN Bilijar atmosfera 2"></button>
+          <button class="gallery-item" data-image="assets/hero-3.jpg"><img src="assets/hero-3.jpg" alt="ZEN Bilijar atmosfera 3"></button>
+        </div>
+      </section>
+
+      <section class="section container" id="kontakti">
+        <div class="section-head"><span>КОНТАКТИ</span><h2>Јави се или дођи</h2></div>
+        <div class="contact-grid">
+          <div class="panel"><h3>Контакт подаци</h3><div class="contact-list"><a id="phoneLink" href="tel:+381642637342">+381 64 2637342</a><a id="viberLink" href="viber://chat?number=%2B381642637342">Viber</a><a id="mailLink" href="mailto:drlazarevicbg@gmail.com">drlazarevicbg@gmail.com</a></div></div>
+          <div class="panel"><h3>Локација</h3><p id="addressText">Београд, преко пута Цветкове пијаце</p><a id="mapsLink" class="btn btn-secondary" href="https://maps.google.com" target="_blank" rel="noopener">Отвори мапу</a></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container footer-inner"><span>© <span id="year"></span> ZEN BILIJAR KUĆICA</span><a href="admin.html">Админ панел</a></div></footer>
+  </div>
+
+  <div class="lightbox hidden" id="lightbox"><button class="lightbox-close" id="lightboxClose">✕</button><img id="lightboxImage" src="" alt="Галерија"></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
